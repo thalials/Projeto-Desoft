@@ -1,92 +1,143 @@
-from tkinter import *
+import tkinter as tk
 
-class Aplicação:
-    def __init__(self, master=None):
-        self.widgetp = Frame(master) #tela principal
-        self.widgetp.pack()
-        self.titulo = Label(self.widgetp, text="Bem vinda, Kathleen")
+class TelaPrincipal(tk.Frame):
+    def __init__(self, app):
+        tk.Frame.__init__(self, app.root)
+        
+        self.app = app
+        
+        self.rowconfigure(0, minsize=100, weight=1)
+        self.rowconfigure(1, minsize=100, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.columnconfigure(0, minsize=300, weight=1)
+        self.columnconfigure(1, weight=1)
+
+        self.titulo = tk.Label(self, text="Bem vinda, Kathleen")
         self.titulo["font"] = ("Arial", "10", "bold")
         self.titulo["width"] = 20
         self.titulo["height"] = 5
-        self.titulo.pack(side=LEFT)
-        self.widgetp.pack ()
+        self.titulo.grid(row=0, column=0, rowspan=3, columnspan=1, sticky="nw")
         
-        self.button1 = Button(self.widgetp) #botão 1
-        self.button1["text"] = "Próximas Entregas"
+        self.button1 = tk.Button(self) #botão 1
+        self.button1["text"] = "Proximas Entregas"
         self.button1["font"] = ("Arial", "12")
         self.button1["width"] = 20 #largura 
         self.button1["height"] = 5 #altura
-        self.button1["command"] = self.mudarTela1
-        self.button1.pack ()
+        self.button1["command"] = self.app.mudar_tela_1
+        self.button1.grid(row=0, column=1, sticky="nsew")
 
-        self.button2 = Button(self.widgetp) #botão 2
+        self.button2 = tk.Button(self) #botão 2
         self.button2["text"] = "Entregas Feitas"
         self.button2["font"] = ("Arial","12")
         self.button2["width"] = 20
         self.button2["height"] = 5
-        self.button2["command"] = self.mudarTela2
-        self.button2.pack ()
+        self.button2["command"] = self.botao2
+        self.button2.grid(row=1, column=1, sticky="nsew")
 
-        self.button3 = Button(self.widgetp) #botão 3
+        self.button3 = tk.Button(self) #botão 3
         self.button3["text"] = "Rendimento"
         self.button3["font"] = ("Arial","12")
         self.button3["width"] = 20
         self.button3["height"] = 5
-        self.button3["command"] = self.mudarTela3
-        self.button3.pack ()
-        
-        
-    def mudarTela1(self):
-        if self.button1["text"] == "Próximas Entregas":
-            self.button1["text"] = "x"
-        else:
-            self.button1["text"] = "Próximas Entregas"
-            
-    def mudarTela2(self):
+        self.button3["command"] = self.botao3
+        self.button3.grid(row=2, column=1, sticky="nsew")
+
+    def botao2(self):
         if self.button2["text"] == "Entregas Feitas":
             self.button2["text"] = "y"
         else:
             self.button2["text"] = "Entregas Feitas"
             
-    def mudarTela3(self):
+    def botao3(self):
        if self.button3["text"] == "Rendimento":
            self.button3["text"] = "z"
        else:
            self.button3["text"] = "Rendimento"
-           
-           
-class telas:
-        def __init__(self, master=None):
-            self.tela3 = Frame(master) #tela 3
-            self.tela3.pack()
-            self.titulo = Label(self.tela3, text="Entregas:")
-            self.titulo["font"] = ("Arial", "10", "bold")
-            self.titulo["width"] = 20
-            self.titulo["height"] = 5
-            self.titulo.pack(side=LEFT)
-            self.tela3.pack ()
-            
-            self.tela2 = Frame(master) #tela 2
-            self.tela2.pack()
-            self.titulo = Label(self.tela2, text="Bem vinda, Kathleen")
-            self.titulo["font"] = ("Arial", "10", "bold")
-            self.titulo["width"] = 20
-            self.titulo["height"] = 5
-            self.titulo.pack(side=LEFT)
-            self.tela2.pack ()
-        
-            self.telat1 = Frame(master) #tela 1
-            self.tela1.pack()
-            self.titulo = Label(self.tela1, text="Próximas Entregas")
-            self.titulo["font"] = ("Arial", "10", "bold")
-            self.titulo["width"] = 20
-            self.titulo["height"] = 5
-            self.titulo.pack(side=LEFT)
-            self.tela1.pack ()
-        
-        
-        
 
-root = Tk()
-Aplicação(root)
-root.mainloop()
+class Tela1(tk.Frame):
+    def __init__(self, app):
+        tk.Frame.__init__(self, app.root)
+        
+        self.app = app
+        
+        self.rowconfigure(0, minsize=200, weight=1)
+        self.rowconfigure(1, weight=1)
+        
+        self.titulo = tk.Label(self, text="Tela 1")
+        self.titulo["font"] = ("Arial", "10", "bold")
+        self.titulo["width"] = 20
+        self.titulo["height"] = 5
+        self.titulo.grid(row=0, column=0, sticky="nw")
+        
+        self.button = tk.Button(self) #botão 1
+        self.button["text"] = "volta"
+        self.button["font"] = ("Arial", "12")
+        self.button["width"] = 20 #largura 
+        self.button["height"] = 5 #altura
+        self.button["command"] = self.app.mudar_tela_principal
+        self.button.grid(row=1, column=0, sticky="nsew")
+
+class Aplicação:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.geometry("450x300+100+100")
+        
+        self.tela_principal = TelaPrincipal(self)  # Tela principal.
+        self.tela_1 = Tela1(self)
+        
+        self.tela_atual = self.tela_principal
+        self.tela_atual.grid()
+
+    def mudar_tela_principal(self):
+        self.tela_atual.grid_forget()
+        self.tela_principal.grid()
+        self.tela_atual = self.tela_principal
+
+    def mudar_tela_1(self):
+        self.tela_atual.grid_forget()
+        self.tela_1.grid()
+        self.tela_atual = self.tela_1
+
+    def roda(self):
+        self.root.mainloop()
+                   
+
+app = Aplicação()
+app.roda()
+
+
+
+
+#        self.tela1 = Frame(self.root) #tela 1
+#        self.tela1.visible = False
+#        self.tela1.pack()
+#        
+#        self.titulo = Label(self.tela1, text="Próximas Entregas")
+#        self.titulo["font"] = ("Arial", "10", "bold")
+#        self.titulo["width"] = 20
+#        self.titulo["height"] = 5
+#        self.titulo.pack(side=LEFT)
+#        self.tela1.pack ()
+#       
+#        self.tela2 = Frame(self.root) #tela 2
+#        self.tela2.visible = False
+#        self.tela2.pack()
+#        
+#        self.titulo = Label(self.tela2, text="Bem vinda, Kathleen")
+#        self.titulo["font"] = ("Arial", "10", "bold")
+#        self.titulo["width"] = 20
+#        self.titulo["height"] = 5
+#        self.titulo.pack(side=LEFT)
+#        self.tela2.pack ()
+#    
+#        self.tela3 = Frame(self.root) #tela 3
+#        self.tela3.visible = False
+#        self.tela3.pack()
+#        
+#        self.titulo = Label(self.tela3, text="Entregas:")
+#        self.titulo["font"] = ("Arial", "10", "bold")
+#        self.titulo["width"] = 20
+#        self.titulo["height"] = 5
+#        self.titulo.pack(side=LEFT)
+#        self.tela3.pack ()
+
