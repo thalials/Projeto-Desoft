@@ -5,6 +5,9 @@ class TelaPrincipal(tk.Frame):
         tk.Frame.__init__(self, app.root)
         
         self.app = app
+       
+        my_window = Tk()
+        my_window.title("planner")
         
         self.rowconfigure(0, minsize=200, weight=1)
         self.rowconfigure(1, minsize=200, weight=1)
