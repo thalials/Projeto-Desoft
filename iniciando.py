@@ -158,38 +158,3 @@ app = Aplicação()
 app.roda()
 
 
-
-
-#        self.tela1 = Frame(self.root) #tela 1
-#        self.tela1.visible = False
-#        self.tela1.pack()
-#        
-#        self.titulo = Label(self.tela1, text="Próximas Entregas")
-#        self.titulo["font"] = ("Arial", "10", "bold")
-#        self.titulo["width"] = 20
-#        self.titulo["height"] = 5
-#        self.titulo.pack(side=LEFT)
-#        self.tela1.pack ()
-#       
-#        self.tela2 = Frame(self.root) #tela 2
-#        self.tela2.visible = False
-#        self.tela2.pack()
-#        
-#        self.titulo = Label(self.tela2, text="Bem vinda, Kathleen")
-#        self.titulo["font"] = ("Arial", "10", "bold")
-#        self.titulo["width"] = 20
-#        self.titulo["height"] = 5
-#        self.titulo.pack(side=LEFT)
-#        self.tela2.pack ()
-#    
-#        self.tela3 = Frame(self.root) #tela 3
-#        self.tela3.visible = False
-#        self.tela3.pack()
-#        
-#        self.titulo = Label(self.tela3, text="Entregas:")
-#        self.titulo["font"] = ("Arial", "10", "bold")
-#        self.titulo["width"] = 20
-#        self.titulo["height"] = 5
-#        self.titulo.pack(side=LEFT)
-#        self.tela3.pack ()
-
