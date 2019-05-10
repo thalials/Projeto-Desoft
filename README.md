@@ -7,7 +7,7 @@ Equipe:
 Cronograma de evolução:
 - Semana 1 (10/05):
     - App com Funções de lista completo;
-    - Ser possível adicionar afazeres em todos os tópicos;
+    - Ser possível adicionar afazeres;
     - Ser possível detalhar uma tarefa;
     - Ser possível resetar tarefas;
 
