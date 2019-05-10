@@ -1,4 +1,4 @@
-import tkinter as tk
+﻿import tkinter as tk
 
 class TelaPrincipal(tk.Frame):
     def __init__(self, app):
@@ -47,6 +47,8 @@ class TelaPrincipal(tk.Frame):
         self.button3["height"] = 5
         self.button3["command"] = self.app.mudar_tela_3
         self.button3.grid(row=2, column=1, sticky="se")
+        
+        
 
 class Tela1(tk.Frame):
     def __init__(self, app):
@@ -69,8 +71,8 @@ class Tela1(tk.Frame):
         self.button["width"] = 20 #largura 
         self.button["height"] = 5 #altura
         self.button["command"] = self.app.mudar_tela_principal
-        self.button.grid(row=1, column=0, sticky="ne")
-
+        self.button.grid(row=1, column=0, sticky="nw")
+        
 class Tela2(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
