@@ -34,7 +34,7 @@ class Application:
         botão = tk.Button(self.window)
         botão.configure(text="Apagar")
         botão.configure(command=self.apagar)
-        botão.grid(row=1, column=1)
+        botão.grid(row=1, column=2)
         
     def iniciar(self):
         self.window.mainloop()
@@ -44,6 +44,17 @@ class Application:
     
     def salvar(self):
         self.tarefas.insert(tk.END, self.conteudo_caixa_texto.get())
+        
+    def apagar(self):
+        items = self.tarefas.curselection()
+        pos = 0
+        for i in items :
+            idx = int(i) - pos
+            self.tarefas.delete( idx,idx )
+            pos = pos + 1
+
+
+        
 
 caixa_texto = 10
 app = Application()
