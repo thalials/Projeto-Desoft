@@ -37,14 +37,14 @@ class Application:
     def iniciar(self):
         self.window.mainloop()
     
-    def apertou_enter(self, event):
-        self.salvar()
+    def apertou_enter(self):
+        self.salvar(caixa_texto)
     
-    def salvar(self, listatarefas):
+    def salvar(self):
         listatarefas.append(self.conteudo_caixa_texto)
         print (listatarefas)
         self.teladetarefas.set(self.conteudo_caixa_texto.get())
-
+caixa_texto = 10
 listatarefas = []
 app = Application()
 app.iniciar()
