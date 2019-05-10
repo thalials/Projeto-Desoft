@@ -14,12 +14,9 @@ class Application:
         self.window.rowconfigure(1, weight=1)
         self.window.columnconfigure(0, minsize=120, weight=1)
         self.window.columnconfigure(1, weight=1)
-        
-        self.teladetarefas = tk.StringVar()
-        label = tk.Label(self.window)
-        label.configure(textvariable=self.teladetarefas)
-        label.configure(font="Courier 20 bold")
-        label.grid(row=0, column=0, columnspan=2, sticky="nsew")
+
+        self.tarefas = tk.Listbox(self.window)
+        self.tarefas.grid(row=0, column=0, columnspan=2, sticky="nsew")
         
         self.conteudo_caixa_texto = tk.StringVar()
         
@@ -34,6 +31,11 @@ class Application:
         botão.configure(command=self.salvar)
         botão.grid(row=1, column=1)
         
+        botão = tk.Button(self.window)
+        botão.configure(text="Apagar")
+        botão.configure(command=self.apagar)
+        botão.grid(row=1, column=1)
+        
     def iniciar(self):
         self.window.mainloop()
     
@@ -41,10 +43,8 @@ class Application:
         self.salvar(caixa_texto)
     
     def salvar(self):
-        listatarefas.append(self.conteudo_caixa_texto)
-        print (listatarefas)
-        self.teladetarefas.set(self.conteudo_caixa_texto.get())
+        self.tarefas.insert(tk.END, self.conteudo_caixa_texto.get())
+
 caixa_texto = 10
-listatarefas = []
 app = Application()
 app.iniciar()
