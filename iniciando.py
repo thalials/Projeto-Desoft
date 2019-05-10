@@ -30,7 +30,7 @@ class TelaPrincipal(tk.Frame):
         self.button1["width"] = 30
         self.button1["height"] = 5
         self.button1["command"] =self.app.mudar_tela_1
-        self.button1.grid(row=1, column=1, sticky="sw")
+        self.button1.grid(row=2, column=0, sticky="sw")
 
         self.button2 = tk.Button(self) #botão 2
         self.button2["text"] = "Tarefas Realizadas"
