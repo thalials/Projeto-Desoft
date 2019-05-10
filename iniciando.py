@@ -9,41 +9,47 @@ class TelaPrincipal(tk.Frame):
         my_window = Tk()
         my_window.title("planner")
         
-        self.rowconfigure(0, minsize=100, weight=1)
-        self.rowconfigure(1, minsize=100, weight=1)
+        self.rowconfigure(0, minsize=200, weight=1)
+        self.rowconfigure(1, minsize=200, weight=1)
         self.rowconfigure(2, weight=1)
-        self.columnconfigure(0, minsize=255, weight=1)
+        self.columnconfigure(0, minsize=410, weight=1)
         self.columnconfigure(1, weight=1)
 
-        self.titulo = tk.Label(self, text="Bem vinda, Kathleen")
+        self.titulo = tk.Label(self, text="Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante")
         self.titulo["font"] = ("Arial", "10", "bold")
         self.titulo["width"] = 20
         self.titulo["height"] = 5
-        self.titulo.grid(row=0, column=0, rowspan=3, columnspan=1, sticky="nw")
+        self.titulo.grid(row=0, column=1, rowspan=3, columnspan=1, sticky="ne")
+        
+        self.titulo1 = tk.Label(self, text="Lista de Afazeres")
+        self.titulo1["font"] = ("Arial", "10", "bold")
+        self.titulo1["width"] = 20
+        self.titulo1["height"] = 5
+        self.titulo1.grid(row=0, column=0, rowspan=3, columnspan=1, sticky="nw")
         
         self.button1 = tk.Button(self) #botão 1
-        self.button1["text"] = "Proximas Entregas"
+        self.button1["text"] = "Adicionar Tarefa"
         self.button1["font"] = ("Arial", "12")
-        self.button1["width"] = 20 #largura 
+        self.button1["width"] = 30 #largura 
         self.button1["height"] = 5 #altura
         self.button1["command"] = self.app.mudar_tela_1
-        self.button1.grid(row=0, column=1, sticky="nsew")
+        self.button1.grid(row=2, column=0, sticky="sw")
 
         self.button2 = tk.Button(self) #botão 2
-        self.button2["text"] = "Entregas Feitas"
+        self.button2["text"] = "Tarefas Realizadas"
         self.button2["font"] = ("Arial","12")
-        self.button2["width"] = 20
+        self.button2["width"] = 30
         self.button2["height"] = 5
         self.button2["command"] =self.app.mudar_tela_2
-        self.button2.grid(row=1, column=1, sticky="nsew")
+        self.button2.grid(row=1, column=1, sticky="se")
 
         self.button3 = tk.Button(self) #botão 3
-        self.button3["text"] = "Rendimento"
+        self.button3["text"] = "Verificar Rendimento \n Semanal"
         self.button3["font"] = ("Arial","12")
-        self.button3["width"] = 20
+        self.button3["width"] = 30
         self.button3["height"] = 5
         self.button3["command"] = self.app.mudar_tela_3
-        self.button3.grid(row=2, column=1, sticky="nsew")
+        self.button3.grid(row=2, column=1, sticky="se")
 
 class Tela1(tk.Frame):
     def __init__(self, app):
@@ -66,7 +72,7 @@ class Tela1(tk.Frame):
         self.button["width"] = 20 #largura 
         self.button["height"] = 5 #altura
         self.button["command"] = self.app.mudar_tela_principal
-        self.button.grid(row=1, column=0, sticky="nsew")
+        self.button.grid(row=1, column=0, sticky="nw")
 
 class Tela2(tk.Frame):
     def __init__(self, app):
@@ -100,7 +106,7 @@ class Tela3(tk.Frame):
         self.rowconfigure(0, minsize=200, weight=1)
         self.rowconfigure(1, weight=1)
         
-        self.titulo = tk.Label(self, text="Tela 3")
+        self.titulo = tk.Label(self, text="Gráfico de rendimento semanal")
         self.titulo["font"] = ("Arial", "10", "bold")
         self.titulo["width"] = 20
         self.titulo["height"] = 5
@@ -117,7 +123,7 @@ class Tela3(tk.Frame):
 class Aplicação:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.geometry("450x300+100+100")
+        self.root.geometry("700x510+100+100")
         
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.tela_1 = Tela1(self)
