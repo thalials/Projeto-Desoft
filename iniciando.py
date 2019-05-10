@@ -168,3 +168,7 @@ app = Aplicação()
 app.roda()
 
 
+
+#TENTANDO DAR COMMIT, ALGUEM ME AJUDAAAAAAAAAAAAAA
+
+
