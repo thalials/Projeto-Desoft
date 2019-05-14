@@ -1,4 +1,5 @@
 ﻿import tkinter as tk
+import tkinter
 
 class TelaPrincipal(tk.Frame):
     def __init__(self, app):
@@ -6,19 +7,13 @@ class TelaPrincipal(tk.Frame):
         
         self.app = app
         
-        self.rowconfigure(0, minsize=150, weight=1)
-        self.rowconfigure(1, minsize=150, weight=1)
-        self.rowconfigure(2, minsize=100, weight=1)
+        self.rowconfigure(0, minsize=200, weight=1)
+        self.rowconfigure(1, minsize=200, weight=1)
+        self.rowconfigure(2, minsize=200, weight=1)
         self.rowconfigure(3, weight=1)
         self.columnconfigure(0, minsize=200, weight=1)
         self.columnconfigure(1, minsize=200, weight=1)
         self.columnconfigure(2, weight=1)
-
-        self.titulo = tk.Label(self, text="Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo["width"] = 50
-        self.titulo["height"] = 5
-        self.titulo.grid(row=0, column=2, sticky="ne")
         
         self.titulo1 = tk.Label(self, text="Lista de Afazeres")
         self.titulo1["font"] = ("Arial", "10", "bold")
@@ -27,29 +22,38 @@ class TelaPrincipal(tk.Frame):
         self.titulo1.grid(row=0, column=0, sticky="nw")
         
         self.tarefas = tk.Listbox(self)
+        self.tarefas["width"] = 40
+        self.tarefas["height"] = 10
         self.tarefas.grid(row=1, column=0, sticky="nsew")
         
         self.conteudo_caixa_texto = tk.StringVar()
         
         self.caixa_texto = tk.Entry(self)
         self.caixa_texto.configure(textvariable=self.conteudo_caixa_texto)
-        self.titulo["width"] = 10
-        self.titulo["height"] = 5
+        self.caixa_texto["width"] = 20
+        
         self.caixa_texto.grid(row=2, column=0, sticky="ew")
         
-        self.botão1 = tk.Button(self)
-        self.botão1["text"] = "Salvar"
-        self.titulo["width"] = 5
-        self.titulo["height"] = 5
-        self.botão1["command"] = self.app.salvar
-        self.botão1.grid(row=3, column=0, sticky="ew")
+        self.perfil = tk.Button(self)
+        self.perfil["text"] = "Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante"
+        self.perfil["font"] = ("Arial", "10", "bold")
+        self.perfil["width"] = 20
+        self.perfil["height"] = 5
+        self.perfil.grid(row=0, column=3, sticky="ne")
         
-        self.botão2 = tk.Button(self)
-        self.botão2.configure(text="Apagar")
-        self.titulo["width"] = 5
-        self.titulo["height"] = 5
-        self.botão2["command"] = self.app.apagar
-        self.botão2.grid(row=3, column=1, sticky="ew")
+        self.salvar = tk.Button(self)
+        self.salvar["text"] = "Salvar"
+        self.salvar["width"] = 10
+        self.salvar["height"] = 5 
+        self.salvar["command"] = self.app.salvar
+        self.salvar.grid(row=3, column=0, sticky="sw")
+        
+        self.apagar = tk.Button(self)
+        self.apagar.configure(text="Apagar")
+        self.apagar["width"] = 10
+        self.apagar["height"] = 5
+        self.apagar["command"] = self.app.apagar
+        self.apagar.grid(row=3, column=1, sticky="sw")
         
         self.button2 = tk.Button(self) #botão 2
         self.button2["text"] = "Tarefas Realizadas"
@@ -116,13 +120,16 @@ class Tela3(tk.Frame):
 class Aplicação:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.geometry("700x510+100+100")
+        self.root.geometry("800x600+100+100")
         
-        self.tela_atual = TelaPrincipal(self)
+        self.tela_principal = TelaPrincipal(self)  # Tela principal.
+        self.tela_principal.grid() 
+        
+        self.tela_atual = self.tela_principal
         self.tela_atual.grid()
         
         self.tela_2 = Tela2(self)
-        self.tela_atual.grid()
+        self.tela_atual.grid() 
         
         self.tela_3 = Tela3(self)
         self.tela_atual.grid()
@@ -130,8 +137,8 @@ class Aplicação:
     def mudar_tela_principal(self):
         self.tela_atual.grid_forget()
         self.tela_principal.grid()
-        self.tela_atual = self.tela_principal
-    
+        self.tela_atual = self.tela_principal 
+
     def salvar(self):
         self.tela_atual.tarefas.insert(tk.END, self.tela_atual.conteudo_caixa_texto.get())
         
