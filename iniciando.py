@@ -54,7 +54,7 @@ class TelaPrincipal(tk.Frame):
         self.button3["font"] = ("Arial","12")
         self.button3["command"] = self.app.mudar_tela_3
         self.button3.grid(row=2, column=3, sticky="se")
-        
+
 class Tela2(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
@@ -117,14 +117,14 @@ class Aplicação:
         
         self.tela_3 = Tela3(self)
         self.tela_atual.grid()
-
+        
     def mudar_tela_principal(self):
         self.tela_atual.grid_forget()
         self.tela_principal.grid()
         self.tela_atual = self.tela_principal 
 
     def salvar(self):
-        self.tela_atual.tarefas.insert(tk.END, self.tela_atual.conteudo_caixa_texto.get())
+        self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + self.tela_atual.conteudo_caixa_texto.get())
         
     def apagar(self):
         items = self.tela_atual.tarefas.curselection()
@@ -146,7 +146,6 @@ class Aplicação:
 
     def roda(self):
         self.root.mainloop()
-                   
 
 app = Aplicação()
 app.roda()
