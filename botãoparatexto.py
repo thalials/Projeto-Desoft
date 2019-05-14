@@ -40,7 +40,7 @@ class Application:
         self.window.mainloop()
     
     def apertou_enter(self):
-        self.salvar(caixa_texto)
+        self.tarefas.insert(tk.END, self.conteudo_caixa_texto.get())
     
     def salvar(self):
         self.tarefas.insert(tk.END, self.conteudo_caixa_texto.get())
