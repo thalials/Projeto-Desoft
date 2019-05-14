@@ -126,6 +126,10 @@ class Aplicação:
         
         self.tela_3 = Tela3(self)
         self.tela_atual.grid()
+        
+    def check_button(self):
+        for i in tarefas:
+            self.Checkbutton(root, variable=var, padx=0,pady=0,bd=0)
 
     def mudar_tela_principal(self):
         self.tela_atual.grid_forget()
@@ -155,7 +159,7 @@ class Aplicação:
 
     def roda(self):
         self.root.mainloop()
-                   
-
+root = Tk()                  
+var = IntVar()
 app = Aplicação()
 app.roda()
