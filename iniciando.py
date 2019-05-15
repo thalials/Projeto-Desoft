@@ -41,6 +41,7 @@ class TelaPrincipal(tk.Frame):
         self.perfil = tk.Button(self)
         self.perfil["text"] = "Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante"
         self.perfil["font"] = ("Arial", "10", "bold") 
+        self.perfil["command"] = self.app.ir_perfil
         self.perfil.grid(row=0, column=3, sticky="ne")
                 
         self.button2 = tk.Button(self) #botão 2
@@ -64,19 +65,15 @@ class Tela2(tk.Frame):
         self.rowconfigure(0, minsize=200, weight=1)
         self.rowconfigure(1, weight=1)
         
-        self.titulo = tk.Label(self, text="Tela 2")
+        self.titulo = tk.Label(self, text="Tarefas Realizadas")
         self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo["width"] = 20
-        self.titulo["height"] = 5
         self.titulo.grid(row=0, column=0, sticky="nw")
         
         self.button = tk.Button(self) #botão 1
         self.button["text"] = "volta"
         self.button["font"] = ("Arial", "12")
-        self.button["width"] = 20 #largura 
-        self.button["height"] = 5 #altura
         self.button["command"] = self.app.mudar_tela_principal
-        self.button.grid(row=1, column=0, sticky="nsew")
+        self.button.grid(row=1, column=0, sticky="sw")
 
 class Tela3(tk.Frame):
     def __init__(self, app):
@@ -89,17 +86,32 @@ class Tela3(tk.Frame):
         
         self.titulo = tk.Label(self, text="Gráfico de rendimento semanal")
         self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo["width"] = 20
-        self.titulo["height"] = 5
         self.titulo.grid(row=0, column=0, sticky="nsew")
         
         self.button = tk.Button(self) #botão 1
         self.button["text"] = "volta"
         self.button["font"] = ("Arial", "12")
-        self.button["width"] = 20 #largura 
-        self.button["height"] = 5 #altura
         self.button["command"] = self.app.mudar_tela_principal
-        self.button.grid(row=1, column=0, sticky="nsew")
+        self.button.grid(row=1, column=0, sticky="sw")
+
+class Perfil(tk.Frame):
+    def __init__(self, app):
+        tk.Frame.__init__(self, app.root)
+        
+        self.app = app
+        
+        self.rowconfigure(0, minsize=200, weight=1)
+        self.rowconfigure(1, weight=1)
+        
+        self.titulo = tk.Label(self, text="Configurações do Perfil")
+        self.titulo["font"] = ("Arial", "10", "bold")
+        self.titulo.grid(row=0, column=0, sticky="nsew")
+        
+        self.button = tk.Button(self) #botão 1
+        self.button["text"] = "volta"
+        self.button["font"] = ("Arial", "12")
+        self.button["command"] = self.app.mudar_tela_principal
+        self.button.grid(row=1, column=0, sticky="sw")
 
 class Aplicação:
     def __init__(self):
@@ -116,6 +128,9 @@ class Aplicação:
         self.tela_atual.grid() 
         
         self.tela_3 = Tela3(self)
+        self.tela_atual.grid()
+        
+        self.perfil = Perfil(self)
         self.tela_atual.grid()
         
     def mudar_tela_principal(self):
@@ -143,6 +158,12 @@ class Aplicação:
         self.tela_atual.grid_forget()
         self.tela_3.grid()
         self.tela_atual = self.tela_3
+
+    def ir_perfil(self):
+        self.tela_atual.grid_forget()
+        self.perfil.grid()
+        self.tela_atual = self.perfil
+
 
     def roda(self):
         self.root.mainloop()
