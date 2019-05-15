@@ -27,17 +27,17 @@ class TelaPrincipal(tk.Frame):
         
         self.caixa_texto = tk.Entry(self)
         self.caixa_texto.configure(textvariable=self.conteudo_caixa_texto)
-        self.caixa_texto.grid(row=2, column=0, sticky="ew") 
+        self.caixa_texto.grid(row=2, column=0, sticky="ew")  
 
         self.salvar = tk.Button(self)
         self.salvar["text"] = "Salvar"
         self.salvar["command"] = self.app.salvar
-        self.salvar.grid(row=1, column=1, sticky="sw")
+        self.salvar.grid(row=3, column=0, sticky="sw")
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
         self.apagar["command"] = self.app.apagar
-        self.apagar.grid(row=1, column=2, sticky="sw")
+        self.apagar.grid(row=3, column=0, sticky="se")
         
         self.perfil = tk.Button(self)
         self.perfil["text"] = "Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante"
@@ -64,7 +64,9 @@ class TarefasRealizadas(tk.Frame):
         self.app = app
         
         self.rowconfigure(0, minsize=200, weight=1)
-        self.rowconfigure(1, weight=1)
+        self.rowconfigure(1, minsize=200, weight=1)
+        self.rowconfigure(2, minsize=200, weight=1)
+        self.rowconfigure(3, weight=1)
         
         self.titulo = tk.Label(self, text="Tarefas Realizadas")
         self.titulo["font"] = ("Arial", "10", "bold")
@@ -83,7 +85,9 @@ class Gráficos(tk.Frame):
         self.app = app
         
         self.rowconfigure(0, minsize=200, weight=1)
-        self.rowconfigure(1, weight=1)
+        self.rowconfigure(1, minsize=200, weight=1)
+        self.rowconfigure(2, minsize=200, weight=1)
+        self.rowconfigure(3, weight=1)
         
         self.titulo = tk.Label(self, text="Gráfico de rendimento semanal")
         self.titulo["font"] = ("Arial", "10", "bold")
@@ -102,7 +106,9 @@ class Perfil(tk.Frame):
         self.app = app
         
         self.rowconfigure(0, minsize=200, weight=1)
-        self.rowconfigure(1, weight=1)
+        self.rowconfigure(1, minsize=200, weight=1)
+        self.rowconfigure(2, minsize=200, weight=1)
+        self.rowconfigure(3, weight=1)
         
         self.titulo = tk.Label(self, text="Configurações do Perfil")
         self.titulo["font"] = ("Arial", "10", "bold")
