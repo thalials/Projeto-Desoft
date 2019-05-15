@@ -6,16 +6,17 @@ class TelaPrincipal(tk.Frame):
         
         self.app = app
         
-        self.rowconfigure(0, minsize=200, weight=1)
+        #Configurações do design
+        self.rowconfigure(0, minsize=200, weight=1) #linhas
         self.rowconfigure(1, minsize=200, weight=1)
         self.rowconfigure(2, minsize=200, weight=1)
         self.rowconfigure(3, weight=1)
-        self.columnconfigure(0, minsize=200, weight=1)
+        self.columnconfigure(0, minsize=200, weight=1) #colunas
         self.columnconfigure(1, minsize=200, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
         self.columnconfigure(3, weight=1)
         
-        self.titulo1 = tk.Label(self, text="Lista de Afazeres")
+        self.titulo1 = tk.Label(self, text="Lista de Afazeres") 
         self.titulo1["font"] = ("Arial", "10", "bold")
         self.titulo1.grid(row=0, column=0, sticky="nw")
         
@@ -44,19 +45,19 @@ class TelaPrincipal(tk.Frame):
         self.perfil["command"] = self.app.ir_perfil
         self.perfil.grid(row=0, column=3, sticky="ne")
                 
-        self.button2 = tk.Button(self) #botão 2
-        self.button2["text"] = "Tarefas Realizadas"
-        self.button2["font"] = ("Arial","12")
-        self.button2["command"] =self.app.mudar_tela_2
-        self.button2.grid(row=1, column=3, sticky="se")
+        self.tarefas_realizadas = tk.Button(self) 
+        self.tarefas_realizadas["text"] = "Tarefas Realizadas"
+        self.tarefas_realizadas["font"] = ("Arial","12")
+        self.tarefas_realizadas["command"] =self.app.tarefas_feitas
+        self.tarefas_realizadas.grid(row=1, column=3, sticky="se")
 
-        self.button3 = tk.Button(self) #botão 3
-        self.button3["text"] = "Verificar Rendimento \n Semanal"
-        self.button3["font"] = ("Arial","12")
-        self.button3["command"] = self.app.mudar_tela_3
-        self.button3.grid(row=2, column=3, sticky="se")
+        self.graficos = tk.Button(self) 
+        self.graficos["text"] = "Verificar Rendimento \n Semanal"
+        self.graficos["font"] = ("Arial","12")
+        self.graficos["command"] = self.app.ir_graficos
+        self.graficos.grid(row=2, column=3, sticky="se")
 
-class Tela2(tk.Frame):
+class TarefasRealizadas(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
         
@@ -69,13 +70,13 @@ class Tela2(tk.Frame):
         self.titulo["font"] = ("Arial", "10", "bold")
         self.titulo.grid(row=0, column=0, sticky="nw")
         
-        self.button = tk.Button(self) #botão 1
-        self.button["text"] = "volta"
-        self.button["font"] = ("Arial", "12")
-        self.button["command"] = self.app.mudar_tela_principal
-        self.button.grid(row=1, column=0, sticky="sw")
+        self.voltar = tk.Button(self) #botão 1
+        self.voltar["text"] = "Voltar"
+        self.voltar["font"] = ("Arial", "12")
+        self.voltar["command"] = self.app.mudar_tela_principal
+        self.voltar.grid(row=1, column=0, sticky="sw")
 
-class Tela3(tk.Frame):
+class Gráficos(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
         
@@ -88,11 +89,11 @@ class Tela3(tk.Frame):
         self.titulo["font"] = ("Arial", "10", "bold")
         self.titulo.grid(row=0, column=0, sticky="nsew")
         
-        self.button = tk.Button(self) #botão 1
-        self.button["text"] = "volta"
-        self.button["font"] = ("Arial", "12")
-        self.button["command"] = self.app.mudar_tela_principal
-        self.button.grid(row=1, column=0, sticky="sw")
+        self.voltar = tk.Button(self) #botão 1
+        self.voltar["text"] = "Voltar"
+        self.voltar["font"] = ("Arial", "12")
+        self.voltar["command"] = self.app.mudar_tela_principal
+        self.voltar.grid(row=1, column=0, sticky="sw")
 
 class Perfil(tk.Frame):
     def __init__(self, app):
@@ -107,11 +108,11 @@ class Perfil(tk.Frame):
         self.titulo["font"] = ("Arial", "10", "bold")
         self.titulo.grid(row=0, column=0, sticky="nsew")
         
-        self.button = tk.Button(self) #botão 1
-        self.button["text"] = "volta"
-        self.button["font"] = ("Arial", "12")
-        self.button["command"] = self.app.mudar_tela_principal
-        self.button.grid(row=1, column=0, sticky="sw")
+        self.voltar = tk.Button(self) #botão 1
+        self.voltar["text"] = "Voltar"
+        self.voltar["font"] = ("Arial", "12")
+        self.voltar["command"] = self.app.mudar_tela_principal
+        self.voltar.grid(row=1, column=0, sticky="sw")
 
 class Aplicação:
     def __init__(self):
@@ -124,10 +125,10 @@ class Aplicação:
         self.tela_atual = self.tela_principal
         self.tela_atual.grid()
         
-        self.tela_2 = Tela2(self)
+        self.tarefas_realizadas = TarefasRealizadas(self)
         self.tela_atual.grid() 
         
-        self.tela_3 = Tela3(self)
+        self.graficos = Gráficos(self) 
         self.tela_atual.grid()
         
         self.perfil = Perfil(self)
@@ -149,15 +150,15 @@ class Aplicação:
             self.tela_atual.tarefas.delete( idx,idx )
             pos = pos + 1
             
-    def mudar_tela_2(self):
+    def tarefas_feitas(self):
         self.tela_atual.grid_forget()
-        self.tela_2.grid()
-        self.tela_atual = self.tela_2
-    
-    def mudar_tela_3(self):
+        self.tarefas_realizadas.grid()
+        self.tela_atual = self.tarefas_realizadas
+        
+    def ir_graficos(self):
         self.tela_atual.grid_forget()
-        self.tela_3.grid()
-        self.tela_atual = self.tela_3
+        self.graficos.grid()
+        self.tela_atual = self.graficos
 
     def ir_perfil(self):
         self.tela_atual.grid_forget()
