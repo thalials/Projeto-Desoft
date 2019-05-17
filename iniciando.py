@@ -1,6 +1,9 @@
 ﻿import tkinter as tk
 import tkinter
 
+
+
+
 class TelaPrincipal(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
