@@ -1,9 +1,62 @@
-﻿import tkinter as tk
+﻿# -*- coding: utf-8 -*-
+import sqlite3
+from tkinter import *
+import tkinter as tk
 
+#Criar conexão e cursor
+con = sqlite3.connect('banco.db')
+cur = con.cursor()
 
+#Criar tabela clientes
+cur.execute("""CREATE TABLE IF NOT EXISTS clientes (
+            nome VARCHAR,
+            telefone VARCHAR PRIMARY KEY,
+            endereco VARCHAR,
+            comp VARCHAR)""")
 
+# Fonte para pesquisa: https://gist.github.com/volneyrock/db7e28e118f0e0ba2a73
 
 class TelaPrincipal(tk.Frame):
+    def __init__(self, app):
+        tk.Frame.__init__(self, app.root)
+        
+        self.app = app
+#--------------------------------------TKINTER INTERFACE/ TELA DE CADASTRO ------------------------------------------------#
+        var = IntVar()
+        
+        self.configure(relief = GROOVE)
+        self.configure(borderwidth="2")
+        self.place(relx=0.0, rely=0.0, relheight=1.0, relwidth= 1.0)
+        
+        Label(self,text='Registration Planner',font=('bold','20')).place(relx=0.33,rely=0.1)
+      
+        Label(self,text='Nome',font=('bold','15')).place(relx=0.24,rely=0.25) 
+        self.nome=Entry(self,font=('bold','15'))
+        self.nome.place(relx=0.4,rely=0.25)
+        
+        Label(self,text='Email',font=('bold','15')).place(relx=0.24,rely=0.4)
+        self.email = Entry(self,font=('bold','15'))
+        self.email.place(relx=0.4,rely=0.4)
+        
+        Label(self,text='Ocupação',font=('bold','15')).place(relx=0.22,rely=0.55)
+        self.ocup = Entry(self,font=('bold','15'))
+        self.ocup.place(relx=0.40,rely=0.55)
+        
+        Label(self, text="Gender", font=("bold", 15)).place(relx= 0.25, rely= 0.69)
+        Radiobutton(self, text = "Male", font = ("bold", 15), variable = var, value = 1).place(relx = 0.43, rely = 0.69)
+        Radiobutton(self, text = "Female", font = ("bold", 15), variable = var, value = 2).place(relx = 0.6, rely = 0.69)
+      
+        self.botaocadastra = tk.Button(self,text='Cadastrar',font=('bold','15'),bg ='brown',
+                                    fg='white', command = self.app.cadastrausuario).place(relx = 0.33,rely = 0.83, relwidth = 0.35)
+        
+        def cadastrausuario(self):
+            nome = self.nome.get()
+            ocup = self.ocup.get()
+            email = self.email.get() 
+#-----------------------------------------FUNÇÕES-----------------------------------------------------------#
+
+                
+class CadastroFeito(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
         
@@ -51,7 +104,7 @@ class TelaPrincipal(tk.Frame):
         self.tarefas_realizadas = tk.Button(self) 
         self.tarefas_realizadas["text"] = "Tarefas Realizadas"
         self.tarefas_realizadas["font"] = ("Arial","12")
-        self.tarefas_realizadas["command"] =self.app.tarefas_feitas
+        self.tarefas_realizadas["command"] = self.app.tarefas_feitas
         self.tarefas_realizadas.grid(row=1, column=3, sticky="se")
 
         self.graficos = tk.Button(self) 
@@ -126,13 +179,16 @@ class Perfil(tk.Frame):
 class Aplicação:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.geometry("800x800+100+100")
-        
+        self.root.geometry("700x500")
+
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.tela_principal.grid() 
         
         self.tela_atual = self.tela_principal
         self.tela_atual.grid()
+        
+        self.botaocadastra = CadastroFeito(self)
+        self.tela_atual.grid() 
         
         self.tarefas_realizadas = TarefasRealizadas(self)
         self.tela_atual.grid() 
@@ -158,7 +214,13 @@ class Aplicação:
             idx = int(i) - pos
             self.tela_atual.tarefas.delete( idx,idx )
             pos = pos + 1
-            
+    
+    def cadastrausuario(self):
+        
+        self.tela_atual.grid_forget()
+        self.botaocadastra.grid()
+        self.tela_atual = self.botaocadastra  
+        
     def tarefas_feitas(self):
         self.tela_atual.grid_forget()
         self.tarefas_realizadas.grid()
