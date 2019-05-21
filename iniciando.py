@@ -208,11 +208,15 @@ class Aplicação:
 
     def salvar(self):
         self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + self.tela_atual.conteudo_caixa_texto.get())
+<<<<<<< HEAD
 
     
     def apertou_enter(self, event):
         self.salvar()
         self.tela_atual.conteudo_caixa_texto.set('')
+=======
+        self.tela_atual.conteudo_caixa_texto.set("")
+>>>>>>> 0baf5dff8360c6d888fafd84528eeca39acba352
         
 
     def apagar(self):
