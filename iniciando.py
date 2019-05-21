@@ -208,7 +208,7 @@ class Aplicação:
 
     def salvar(self):
         self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + self.tela_atual.conteudo_caixa_texto.get())
-        self.tela_atual.conteudo_caixa_texto.set('')
+        self.tela_atual.conteudo_caixa_texto.set("")
         
     def apagar(self):
         items = self.tela_atual.tarefas.curselection()
