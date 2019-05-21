@@ -63,55 +63,63 @@ class CadastroFeito(tk.Frame):
         self.app = app
         
         #Configurações do design
-        self.rowconfigure(0, minsize=200, weight=1) #linhas
-        self.rowconfigure(1, minsize=200, weight=1)
+        self.rowconfigure(0, minsize=100, weight=1) #linhas
+        self.rowconfigure(1, minsize=100, weight=1)
         self.rowconfigure(2, minsize=200, weight=1)
-        self.rowconfigure(3, weight=1)
-        self.columnconfigure(0, minsize=200, weight=1) #colunas
-        self.columnconfigure(1, minsize=200, weight=1)
+        self.rowconfigure(3, minsize=100, weight=1)
+        self.rowconfigure(4, minsize=100, weight=1)
+        self.columnconfigure(0, minsize=300, weight=1) #colunas
+        self.columnconfigure(1, minsize=300, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
-        self.columnconfigure(3, weight=1)
         
         self.titulo1 = tk.Label(self, text="Lista de Afazeres") 
         self.titulo1["font"] = ("Arial", "10", "bold")
-        self.titulo1.grid(row=0, column=0, sticky="nw")
+        self.titulo1.grid(row=0, column=0, sticky="")
         
         self.tarefas = tk.Listbox(self)
-        self.tarefas.grid(row=1, column=0, sticky="nsew")
+        self.tarefas.grid(row=1, column=0, rowspan=2, columnspan=2, sticky="nsew", padx=5)
         
         self.conteudo_caixa_texto = tk.StringVar()
         
         self.caixa_texto = tk.Entry(self)
         self.caixa_texto.configure(textvariable=self.conteudo_caixa_texto)
-        self.caixa_texto.grid(row=2, column=0, sticky="ew")  
+        self.caixa_texto.grid(row=3, column=0, columnspan=2, sticky="new", padx=5, pady=5)  
 
         self.salvar = tk.Button(self)
         self.salvar["text"] = "Salvar"
+        self.salvar["font"] = ("Arial", "10", "bold") 
         self.salvar["command"] = self.app.salvar
-        self.salvar.grid(row=3, column=0, sticky="sw")
+        self.salvar.grid(row=4, column=0, sticky="")
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
+        self.apagar["font"] = ("Arial", "10", "bold") 
         self.apagar["command"] = self.app.apagar
-        self.apagar.grid(row=3, column=0, sticky="se")
+        self.apagar.grid(row=4, column=1, sticky="")
         
         self.perfil = tk.Button(self)
         self.perfil["text"] = "Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante"
         self.perfil["font"] = ("Arial", "10", "bold") 
         self.perfil["command"] = self.app.ir_perfil
-        self.perfil.grid(row=0, column=3, sticky="ne")
+        self.perfil.grid(row=0, column=2, sticky="")
                 
         self.tarefas_realizadas = tk.Button(self) 
         self.tarefas_realizadas["text"] = "Tarefas Realizadas"
         self.tarefas_realizadas["font"] = ("Arial","12")
         self.tarefas_realizadas["command"] = self.app.tarefas_feitas
-        self.tarefas_realizadas.grid(row=1, column=3, sticky="se")
+        self.tarefas_realizadas.grid(row=3, column=2, sticky="")
 
         self.graficos = tk.Button(self) 
         self.graficos["text"] = "Verificar Rendimento \n Semanal"
         self.graficos["font"] = ("Arial","12")
         self.graficos["command"] = self.app.ir_graficos
-        self.graficos.grid(row=2, column=3, sticky="se")
+        self.graficos.grid(row=2, column=2, sticky="")
+        
+        self.arquivar = tk.Button(self) 
+        self.arquivar["text"] = "Arquivar"
+        self.arquivar["font"] = ("Arial", "12")
+        self.arquivar["command"] = self.app.tarefas_ar
+        self.arquivar.grid(row=4, column=2, sticky="")
 
 class TarefasRealizadas(tk.Frame):
     def __init__(self, app):
@@ -133,6 +141,9 @@ class TarefasRealizadas(tk.Frame):
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=1, column=0, sticky="sw")
+        
+        self.lista_ar = tk.Listbox(self)
+        self.lista_ar.grid(row=2, column=0, sticky="sw")
 
 class Gráficos(tk.Frame):
     def __init__(self, app):
@@ -175,28 +186,21 @@ class Perfil(tk.Frame):
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=1, column=0, sticky="sw")
+        
+        
 
 class Aplicação:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.geometry("700x500")
+        self.root.geometry("800x600")
 
-        self.tela_principal = TelaPrincipal(self)  # Tela principal.
-        self.tela_principal.grid() 
+        self.tela_principal = CadastroFeito(self)  # Tela principal.
+        self.botaocadastra = CadastroFeito(self)
+        self.tarefas_realizadas = TarefasRealizadas(self)
+        self.graficos = Gráficos(self) 
+        self.perfil = Perfil(self)
         
         self.tela_atual = self.tela_principal
-        self.tela_atual.grid()
-        
-        self.botaocadastra = CadastroFeito(self)
-        self.tela_atual.grid() 
-        
-        self.tarefas_realizadas = TarefasRealizadas(self)
-        self.tela_atual.grid() 
-        
-        self.graficos = Gráficos(self) 
-        self.tela_atual.grid()
-        
-        self.perfil = Perfil(self)
         self.tela_atual.grid()
         
     def mudar_tela_principal(self):
@@ -206,7 +210,16 @@ class Aplicação:
 
     def salvar(self):
         self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + self.tela_atual.conteudo_caixa_texto.get())
+        self.tela_atual.conteudo_caixa_texto.set("")
+
+
+    
+    def apertou_enter(self, event):
+        self.salvar()
+        self.tela_atual.conteudo_caixa_texto.set('')
+
         
+
     def apagar(self):
         items = self.tela_atual.tarefas.curselection()
         pos = 0
@@ -216,7 +229,6 @@ class Aplicação:
             pos = pos + 1
     
     def cadastrausuario(self):
-        
         self.tela_atual.grid_forget()
         self.botaocadastra.grid()
         self.tela_atual = self.botaocadastra  
@@ -235,6 +247,16 @@ class Aplicação:
         self.tela_atual.grid_forget()
         self.perfil.grid()
         self.tela_atual = self.perfil
+        
+    def tarefas_ar(self):
+        for i in self.tela_atual.tarefas.curselection():
+            self.tarefas_realizadas.lista_ar.insert(tk.END, self.tela_atual.tarefas.get(i))
+        items = self.tela_atual.tarefas.curselection()
+        pos = 0
+        for i in items:
+            idx = int(i) - pos
+            self.tela_atual.tarefas.delete( idx,idx )
+            pos = pos + 1
 
 
     def roda(self):
@@ -242,3 +264,5 @@ class Aplicação:
 
 app = Aplicação()
 app.roda()
+
+#pra commitar
