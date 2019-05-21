@@ -114,6 +114,12 @@ class CadastroFeito(tk.Frame):
         self.graficos["font"] = ("Arial","12")
         self.graficos["command"] = self.app.ir_graficos
         self.graficos.grid(row=2, column=2, sticky="")
+        
+        self.arquivar = tk.Button(self) 
+        self.arquivar["text"] = "Arquivar"
+        self.arquivar["font"] = ("Arial", "12")
+        self.arquivar["command"] = self.app.tarefas_feitas
+        self.arquivar.grid(row=4, column=2, sticky="")
 
 class TarefasRealizadas(tk.Frame):
     def __init__(self, app):
@@ -135,6 +141,9 @@ class TarefasRealizadas(tk.Frame):
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=1, column=0, sticky="sw")
+        
+        self.tarefas_realizadas = tk.Listbox(self)
+        self.tarefas_realizadas.grid(row=2, column=0, sticky="sw")
 
 class Gráficos(tk.Frame):
     def __init__(self, app):
@@ -177,6 +186,8 @@ class Perfil(tk.Frame):
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=1, column=0, sticky="sw")
+        
+        
 
 class Aplicação:
     def __init__(self):
@@ -208,6 +219,7 @@ class Aplicação:
 
     def salvar(self):
         self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + self.tela_atual.conteudo_caixa_texto.get())
+        self.tela_atual.conteudo_caixa_texto.set("")
 
 
     
@@ -244,6 +256,16 @@ class Aplicação:
         self.tela_atual.grid_forget()
         self.perfil.grid()
         self.tela_atual = self.perfil
+        
+    def tarefas_feitas(self):
+        self.tela_atual.tarefas.curselection()
+        self.tela_atual.tarefas_realizadas.insert(tk.END, chr(9745) + " " + self.tela_atual.tarefas.curselection())
+        items = self.tela_atual.tarefas.curselection()
+        pos = 0
+        for i in items:
+            idx = int(i) - pos
+            self.tela_atual.tarefas.delete( idx,idx )
+            pos = pos + 1
 
 
     def roda(self):
