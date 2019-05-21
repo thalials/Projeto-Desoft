@@ -107,13 +107,13 @@ class CadastroFeito(tk.Frame):
         self.tarefas_realizadas["text"] = "Tarefas Realizadas"
         self.tarefas_realizadas["font"] = ("Arial","12")
         self.tarefas_realizadas["command"] = self.app.tarefas_feitas
-        self.tarefas_realizadas.grid(row=1, column=2, sticky="")
+        self.tarefas_realizadas.grid(row=3, column=2, sticky="")
 
         self.graficos = tk.Button(self) 
         self.graficos["text"] = "Verificar Rendimento \n Semanal"
         self.graficos["font"] = ("Arial","12")
         self.graficos["command"] = self.app.ir_graficos
-        self.graficos.grid(row=2, column=2, sticky="")
+        self.graficos.grid(row=4, column=2, sticky="")
 
 class TarefasRealizadas(tk.Frame):
     def __init__(self, app):
