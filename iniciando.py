@@ -22,40 +22,52 @@ class TelaPrincipal(tk.Frame):
         
         self.app = app
 #--------------------------------------TKINTER INTERFACE/ TELA DE CADASTRO ------------------------------------------------#
-        var = IntVar()
+
+        self.titulo = tk.Label(self, text="Registration Planner") 
+        self.titulo["font"] = ("Arial", "15", "bold")
+        self.titulo.grid(row=1, column=4, sticky="N")
+                
+        self.caixa_texto = tk.StringVar()
         
-        self.configure(relief = GROOVE)
-        self.configure(borderwidth="2")
-        self.place(relx=0.0, rely=0.0, relheight=1.0, relwidth= 1.0)
-        
-        Label(self,text='Registration Planner',font=('bold','20')).place(relx=0.33,rely=0.1)
+        self.entrada= tk.Entry(self)
+        self.entrada.configure(textvariable = self.caixa_texto)
+        self.entrada.grid(row=3, column=3, sticky="N")  
+  
+        self.nome = tk.Label(self, text="Nome") 
+        self.nome["font"] = ("Arial", "12", "bold")
+        self.nome.grid(row=3, column=2, sticky="n")
+       
+        self.entrada1= tk.Entry(self)
+        self.entrada1.configure(textvariable = self.caixa_texto)
+        self.entrada1.grid(row=5, column=3, sticky="nsew")  
+  
+        self.email = tk.Label(self, text="Email") 
+        self.email["font"] = ("Arial", "12", "bold")
+        self.email.grid(row=5, column=2, sticky="nsew")
+         
+        self.entrada2 = tk.Entry(self)
+        self.entrada2.configure(textvariable = self.caixa_texto)
+        self.entrada2.grid(row=7, column=3, sticky="nsew")  
+  
+        self.ocup = tk.Label(self, text="Ocupação") 
+        self.ocup["font"] = ("Arial", "12", "bold")
+        self.ocup.grid(row=7, column=2, sticky="nsew")
       
-        Label(self,text='Nome',font=('bold','15')).place(relx=0.24,rely=0.25) 
-        self.nome=Entry(self,font=('bold','15'))
-        self.nome.place(relx=0.4,rely=0.25)
+        var = tk.IntVar()
         
-        Label(self,text='Email',font=('bold','15')).place(relx=0.24,rely=0.4)
-        self.email = Entry(self,font=('bold','15'))
-        self.email.place(relx=0.4,rely=0.4)
-        
-        Label(self,text='Ocupação',font=('bold','15')).place(relx=0.22,rely=0.55)
-        self.ocup = Entry(self,font=('bold','15'))
-        self.ocup.place(relx=0.40,rely=0.55)
-        
-        Label(self, text="Gender", font=("bold", 15)).place(relx= 0.25, rely= 0.69)
-        Radiobutton(self, text = "Male", font = ("bold", 15), variable = var, value = 1).place(relx = 0.43, rely = 0.69)
-        Radiobutton(self, text = "Female", font = ("bold", 15), variable = var, value = 2).place(relx = 0.6, rely = 0.69)
+        tk.Label(self, text="Gender", font=("bold", 15)).grid(row=20, column=3, sticky="nsew")
+        tk.Radiobutton(self, text = "Male", font = ("bold", 15), variable = var, value = 1).grid(row=20, column=4, sticky="nsew")
+        tk.Radiobutton(self, text = "Female", font = ("bold", 15), variable = var, value = 2).grid(row=20, column=5, sticky="nsew")
       
-        self.botaocadastra = tk.Button(self,text='Cadastrar',font=('bold','15'),bg ='brown',
-                                    fg='white', command = self.app.cadastrausuario).place(relx = 0.33,rely = 0.83, relwidth = 0.35)
+        self.botaocadastra = tk.Button(self,text='Cadastrar',font=('bold','10'),bg ='brown',
+                                    fg='white', command = self.app.cadastrausuario).grid(row=40, column= 4 , sticky="nsew")
         
         def cadastrausuario(self):
             nome = self.nome.get()
             ocup = self.ocup.get()
             email = self.email.get() 
-#-----------------------------------------FUNÇÕES-----------------------------------------------------------#
-
-                
+        
+#-----------------------------------------FUNÇÕES-----------------------------------------------------------#                
 class CadastroFeito(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
@@ -152,8 +164,7 @@ class TarefasRealizadas(tk.Frame):
         self.titulo.grid(row=0, column=0, columnspan=3, sticky="", padx=5, pady=5)
         self.titulo["foreground"]='white'
         self.titulo["bg"]='black'
-        
-        
+                
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
@@ -169,7 +180,6 @@ class Gráficos(tk.Frame):
         tk.Frame.__init__(self, app.root)
         
         self.app = app
-        
         
         self.rowconfigure(0, minsize=200, weight=1)
         self.rowconfigure(1, minsize=200, weight=1)
@@ -207,8 +217,7 @@ class Perfil(tk.Frame):
         self.columnconfigure(0, minsize=200, weight=1) #colunas
         self.columnconfigure(1, minsize=400, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
-        
-        
+               
         self.configure(background="black")
         
         self.titulo = tk.Label(self, text="Configurações do Perfil")
@@ -222,47 +231,44 @@ class Perfil(tk.Frame):
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=1, column=0, sticky="sw")
-        self.voltar["bg"]='red'
-        
-        
+        self.voltar["bg"]='red'                
 
 class Aplicação:
     def __init__(self):
         self.root = tk.Tk()
         self.root.geometry("800x600")
 
-        self.tela_principal = CadastroFeito(self)  # Tela principal.
+        self.tela_principal = TelaPrincipal(self)  # Tela principal.
+        self.tela_atual = self.tela_principal
+        
+        self.perfil = Perfil(self)
+        self.tela_atual.grid()
         self.botaocadastra = CadastroFeito(self)
         self.tarefas_realizadas = TarefasRealizadas(self)
         self.graficos = Gráficos(self) 
         self.perfil = Perfil(self)
         
-        self.tela_atual = self.tela_principal
         self.tela_atual.grid()
         
     def mudar_tela_principal(self):
         self.tela_atual.grid_forget()
-        self.tela_principal.grid()
-        self.tela_atual = self.tela_principal 
+        self.botaocadastra.grid()
+        self.tela_atual = self.botaocadastra 
 
     def salvar(self):
         self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + self.tela_atual.conteudo_caixa_texto.get())
         self.tela_atual.conteudo_caixa_texto.set("")
-
-
     
     def apertou_enter(self, event):
         self.salvar()
         self.tela_atual.conteudo_caixa_texto.set('')
 
-        
-
     def apagar(self):
-        items = self.tela_atual.tarefas.curselection()
+        items = self.botaocadastra.tarefas.curselection()
         pos = 0
         for i in items:
             idx = int(i) - pos
-            self.tela_atual.tarefas.delete( idx,idx )
+            self.botaocadastra.tarefas.delete( idx,idx )
             pos = pos + 1
     
     def cadastrausuario(self):
@@ -276,25 +282,24 @@ class Aplicação:
         self.tela_atual = self.tarefas_realizadas
         
     def ir_graficos(self):
-        self.tela_atual.grid_forget()
+        self.botaocadastra.grid_forget()
         self.graficos.grid()
         self.tela_atual = self.graficos
 
     def ir_perfil(self):
-        self.tela_atual.grid_forget()
+        self.botaocadastra.grid_forget()
         self.perfil.grid()
         self.tela_atual = self.perfil
         
     def tarefas_ar(self):
-        for i in self.tela_atual.tarefas.curselection():
+        for i in self.botaocadastra.tarefas.curselection():
             self.tarefas_realizadas.lista_ar.insert(tk.END, self.tela_atual.tarefas.get(i))
-        items = self.tela_atual.tarefas.curselection()
+        items = self.botaocadastra.tarefas.curselection()
         pos = 0
         for i in items:
             idx = int(i) - pos
-            self.tela_atual.tarefas.delete( idx,idx )
+            self.botaocadastra.tarefas.delete( idx,idx )
             pos = pos + 1
-
 
     def roda(self):
         self.root.mainloop()
