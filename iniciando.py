@@ -27,27 +27,29 @@ class TelaPrincipal(tk.Frame):
         self.titulo["font"] = ("Arial", "15", "bold")
         self.titulo.grid(row=1, column=4, sticky="N")
                 
-        self.caixa_texto = tk.StringVar()
+        self.caixa_texto1 = tk.StringVar()
+        self.caixa_texto2 = tk.StringVar()
+        self.caixa_texto3 = tk.StringVar()
         
-        self.entrada= tk.Entry(self)
-        self.entrada.configure(textvariable = self.caixa_texto)
-        self.entrada.grid(row=3, column=3, sticky="N")  
+        self.entrada1= tk.Entry(self)
+        self.entrada1.configure(textvariable = self.caixa_texto1)
+        self.entrada1.grid(row=3, column=3, sticky="N")  
   
         self.nome = tk.Label(self, text="Nome") 
         self.nome["font"] = ("Arial", "12", "bold")
         self.nome.grid(row=3, column=2, sticky="n")
        
-        self.entrada1= tk.Entry(self)
-        self.entrada1.configure(textvariable = self.caixa_texto)
-        self.entrada1.grid(row=5, column=3, sticky="nsew")  
+        self.entrada2= tk.Entry(self)
+        self.entrada2.configure(textvariable = self.caixa_texto2)
+        self.entrada2.grid(row=5, column=3, sticky="nsew")  
   
         self.email = tk.Label(self, text="Email") 
         self.email["font"] = ("Arial", "12", "bold")
         self.email.grid(row=5, column=2, sticky="nsew")
          
-        self.entrada2 = tk.Entry(self)
-        self.entrada2.configure(textvariable = self.caixa_texto)
-        self.entrada2.grid(row=7, column=3, sticky="nsew")  
+        self.entrada3 = tk.Entry(self)
+        self.entrada3.configure(textvariable = self.caixa_texto3)
+        self.entrada3.grid(row=7, column=3, sticky="nsew")  
   
         self.ocup = tk.Label(self, text="Ocupação") 
         self.ocup["font"] = ("Arial", "12", "bold")
