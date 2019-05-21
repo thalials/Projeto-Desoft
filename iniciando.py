@@ -118,7 +118,7 @@ class CadastroFeito(tk.Frame):
         self.arquivar = tk.Button(self) 
         self.arquivar["text"] = "Arquivar"
         self.arquivar["font"] = ("Arial", "12")
-        self.arquivar["command"] = self.app.tarefas_feitas
+        self.arquivar["command"] = self.app.tarefas_ar
         self.arquivar.grid(row=4, column=2, sticky="")
 
 class TarefasRealizadas(tk.Frame):
@@ -142,8 +142,8 @@ class TarefasRealizadas(tk.Frame):
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=1, column=0, sticky="sw")
         
-        self.tarefas_realizadas = tk.Listbox(self)
-        self.tarefas_realizadas.grid(row=2, column=0, sticky="sw")
+        self.lista_ar = tk.Listbox(self)
+        self.lista_ar.grid(row=2, column=0, sticky="sw")
 
 class Gráficos(tk.Frame):
     def __init__(self, app):
@@ -259,7 +259,7 @@ class Aplicação:
         
     def tarefas_ar(self):
         self.tela_atual.tarefas.curselection()
-        self.tela_atual.tarefas_realizadas.insert(tk.END, chr(9745) + " " + self.tela_atual.tarefas.curselection())
+        self.tela_atual.lista_ar.insert(tk.END, chr(9745) + " " + self.tela_atual.tarefas.curselection())
         items = self.tela_atual.tarefas.curselection()
         pos = 0
         for i in items:
