@@ -72,6 +72,8 @@ class CadastroFeito(tk.Frame):
         self.columnconfigure(1, minsize=300, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
         
+        self.configure(background="black") #definindo cor do fundo
+        
         self.titulo1 = tk.Label(self, text="Lista de Afazeres") 
         self.titulo1["font"] = ("Arial", "10", "bold")
         self.titulo1.grid(row=0, column=0, sticky="")
@@ -90,36 +92,42 @@ class CadastroFeito(tk.Frame):
         self.salvar["font"] = ("Arial", "10", "bold") 
         self.salvar["command"] = self.app.salvar
         self.salvar.grid(row=4, column=0, sticky="")
+        self.salvar["bg"] = "red"
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
         self.apagar["font"] = ("Arial", "10", "bold") 
         self.apagar["command"] = self.app.apagar
         self.apagar.grid(row=4, column=1, sticky="")
+        self.apagar["bg"] = "red"
         
         self.perfil = tk.Button(self)
         self.perfil["text"] = "Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante"
         self.perfil["font"] = ("Arial", "10", "bold") 
         self.perfil["command"] = self.app.ir_perfil
         self.perfil.grid(row=0, column=2, sticky="")
+        self.perfil["bg"] = "red"
                 
         self.tarefas_realizadas = tk.Button(self) 
         self.tarefas_realizadas["text"] = "Tarefas Realizadas"
         self.tarefas_realizadas["font"] = ("Arial","12")
         self.tarefas_realizadas["command"] = self.app.tarefas_feitas
         self.tarefas_realizadas.grid(row=1, column=2, sticky="")
+        self.tarefas_realizadas["bg"] = "red"
 
         self.graficos = tk.Button(self) 
         self.graficos["text"] = "Verificar Rendimento \n Semanal"
         self.graficos["font"] = ("Arial","12")
         self.graficos["command"] = self.app.ir_graficos
         self.graficos.grid(row=2, column=2, sticky="")
+        self.graficos["bg"] = "red"
         
         self.arquivar = tk.Button(self) 
         self.arquivar["text"] = "Arquivar"
         self.arquivar["font"] = ("Arial", "12")
         self.arquivar["command"] = self.app.tarefas_ar
         self.arquivar.grid(row=4, column=2, sticky="")
+        self.arquivar["bg"] = "red"
 
 class TarefasRealizadas(tk.Frame):
     def __init__(self, app):
