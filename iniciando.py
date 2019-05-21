@@ -257,7 +257,7 @@ class Aplicação:
         self.perfil.grid()
         self.tela_atual = self.perfil
         
-    def tarefas_feitas(self):
+    def tarefas_ar(self):
         self.tela_atual.tarefas.curselection()
         self.tela_atual.tarefas_realizadas.insert(tk.END, chr(9745) + " " + self.tela_atual.tarefas.curselection())
         items = self.tela_atual.tarefas.curselection()
