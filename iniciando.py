@@ -127,14 +127,17 @@ class TarefasRealizadas(tk.Frame):
         
         self.app = app
         
-        self.rowconfigure(0, minsize=200, weight=1)
-        self.rowconfigure(1, minsize=200, weight=1)
-        self.rowconfigure(2, minsize=200, weight=1)
-        self.rowconfigure(3, weight=1)
+        self.rowconfigure(0, minsize=100, weight=1) # linhas
+        self.rowconfigure(1, minsize=400, weight=1)
+        self.rowconfigure(2, minsize=100, weight=1)
+        
+        self.columnconfigure(0, minsize=200, weight=1) #colunas
+        self.columnconfigure(1, minsize=400, weight=1)
+        self.columnconfigure(2, minsize=200, weight=1)
         
         self.titulo = tk.Label(self, text="Tarefas Realizadas")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.grid(row=0, column=0, sticky="nw")
+        self.titulo["font"] = ("Arial", "20", "bold")
+        self.titulo.grid(row=0, column=0, columnspan=3, sticky="", padx=5, pady=5)
         
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
@@ -143,7 +146,7 @@ class TarefasRealizadas(tk.Frame):
         self.voltar.grid(row=1, column=0, sticky="sw")
         
         self.lista_ar = tk.Listbox(self)
-        self.lista_ar.grid(row=2, column=0, sticky="sw")
+        self.lista_ar.grid(row=1, column=1, sticky="")
 
 class Gráficos(tk.Frame):
     def __init__(self, app):
