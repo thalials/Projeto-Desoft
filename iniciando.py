@@ -75,8 +75,10 @@ class CadastroFeito(tk.Frame):
         self.configure(background="black") #definindo cor do fundo
         
         self.titulo1 = tk.Label(self, text="Lista de Afazeres") 
-        self.titulo1["font"] = ("Arial", "10", "bold")
+        self.titulo1["font"] = ("Arial", "20", "bold")
         self.titulo1.grid(row=0, column=0, sticky="")
+        self.titulo1["foreground"]='white'
+        self.titulo1["bg"]='black'
         
         self.tarefas = tk.Listbox(self)
         self.tarefas.grid(row=1, column=0, rowspan=2, columnspan=2, sticky="nsew", padx=5)
@@ -124,7 +126,7 @@ class CadastroFeito(tk.Frame):
         
         self.arquivar = tk.Button(self) 
         self.arquivar["text"] = "Arquivar"
-        self.arquivar["font"] = ("Arial", "12")
+        self.arquivar["font"] = ("Arial", "12", "bold")
         self.arquivar["command"] = self.app.tarefas_ar
         self.arquivar.grid(row=4, column=2, sticky="")
         self.arquivar["bg"] = "red"
@@ -143,15 +145,21 @@ class TarefasRealizadas(tk.Frame):
         self.columnconfigure(1, minsize=400, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
         
+        self.configure(background="black")
+        
         self.titulo = tk.Label(self, text="Tarefas Realizadas")
         self.titulo["font"] = ("Arial", "20", "bold")
         self.titulo.grid(row=0, column=0, columnspan=3, sticky="", padx=5, pady=5)
+        self.titulo["foreground"]='white'
+        self.titulo["bg"]='black'
+        
         
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=1, column=0, sticky="sw")
+        self.voltar["bg"] = "red"
         
         self.lista_ar = tk.Listbox(self)
         self.lista_ar.grid(row=1, column=1, sticky="")
@@ -162,20 +170,29 @@ class Gráficos(tk.Frame):
         
         self.app = app
         
+        
         self.rowconfigure(0, minsize=200, weight=1)
         self.rowconfigure(1, minsize=200, weight=1)
         self.rowconfigure(2, minsize=200, weight=1)
-        self.rowconfigure(3, weight=1)
+        
+        self.columnconfigure(0, minsize=200, weight=1) #colunas
+        self.columnconfigure(1, minsize=400, weight=1)
+        self.columnconfigure(2, minsize=200, weight=1)
+        
+        self.configure(background="black")
         
         self.titulo = tk.Label(self, text="Gráfico de rendimento semanal")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.grid(row=0, column=0, sticky="nsew")
+        self.titulo["font"] = ("Arial", "20", "bold")
+        self.titulo.grid(row=0, column=1, sticky="")
+        self.titulo["foreground"]='white'
+        self.titulo["bg"]='black'
         
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
-        self.voltar.grid(row=1, column=0, sticky="sw")
+        self.voltar.grid(row=2, column=0, sticky="sw", padx=5, pady=5)
+        self.voltar["bg"]='red'
 
 class Perfil(tk.Frame):
     def __init__(self, app):
@@ -186,17 +203,26 @@ class Perfil(tk.Frame):
         self.rowconfigure(0, minsize=200, weight=1)
         self.rowconfigure(1, minsize=200, weight=1)
         self.rowconfigure(2, minsize=200, weight=1)
-        self.rowconfigure(3, weight=1)
+        
+        self.columnconfigure(0, minsize=200, weight=1) #colunas
+        self.columnconfigure(1, minsize=400, weight=1)
+        self.columnconfigure(2, minsize=200, weight=1)
+        
+        
+        self.configure(background="black")
         
         self.titulo = tk.Label(self, text="Configurações do Perfil")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.grid(row=0, column=0, sticky="nsew")
+        self.titulo["font"] = ("Arial", "20", "bold")
+        self.titulo.grid(row=0, column=1, sticky="nsew")
+        self.titulo["foreground"]='white'
+        self.titulo["bg"]='black'
         
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=1, column=0, sticky="sw")
+        self.voltar["bg"]='red'
         
         
 
