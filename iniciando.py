@@ -252,8 +252,9 @@ class Aplicação:
 
     
     def apertou_enter(self, event):
-        self.salvar()
-        self.tela_atual.conteudo_caixa_texto.set('')
+#        self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + self.tela_atual.conteudo_caixa_texto.get())
+#        self.tela_atual.conteudo_caixa_texto.set("")
+        self.root.bind('<Return>', self.salvar)
 
         
 
