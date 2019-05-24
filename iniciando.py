@@ -1,8 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 import sqlite3
 from tkinter import *
-import tkinter as tk
-
+import tkinter as ttk
 #Criar conexão e cursor
 con = sqlite3.connect('banco.db')
 cur = con.cursor()
@@ -46,9 +45,6 @@ class TelaPrincipal(tk.Frame):
         self.columnconfigure(4, minsize=100, weight=1)
         self.columnconfigure(5, minsize=50, weight=1)
         
-        
-#        self.configure(background="black") #definindo cor do fundo
-        
         self.titulo = tk.Label(self, text="Registration Planner") 
         self.titulo["font"] = ("Arial", "15", "bold")
         self.titulo.grid(row=0, column=2, sticky="nsew")
@@ -88,8 +84,8 @@ class TelaPrincipal(tk.Frame):
         tk.Radiobutton(self, text = "Female", font = ("Arial", "12", "bold"), variable = var, value = 2).grid(row=11, column=3, sticky="nsew")
 
         self.botaocadastra = tk.Button(self, text = "Cadastrar")
-        self.botaocadastra["font"] = ("bold", "10")
-        self.botaocadastra['bg'] = ('brown')
+        self.botaocadastra["font"] = ("bold", "15")
+        self.botaocadastra['bg'] = ('tomato3')
         self.botaocadastra['fg'] = ('white')
         self.botaocadastra["command"] = self.app.cadastrausuario
         self.botaocadastra.grid(row = 13 , column = 2, sticky = "nsew")
@@ -117,13 +113,13 @@ class CadastroFeito(tk.Frame):
         self.columnconfigure(1, minsize=300, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
         
-        self.configure(background="black") #definindo cor do fundo
+        self.configure(background="khaki") #definindo cor do fundo
         
         self.titulo1 = tk.Label(self, text="Lista de Afazeres") 
         self.titulo1["font"] = ("Arial", "20", "bold")
         self.titulo1.grid(row=0, column=0, sticky="")
         self.titulo1["foreground"]='white'
-        self.titulo1["bg"]='black'
+        self.titulo1["bg"]='khaki'
         
         self.tarefas = tk.Listbox(self)
         self.tarefas.grid(row=1, column=0, rowspan=2, columnspan=2, sticky="nsew", padx=5)
@@ -139,42 +135,42 @@ class CadastroFeito(tk.Frame):
         self.salvar["font"] = ("Arial", "10", "bold") 
         self.salvar["command"] = self.app.salvar
         self.salvar.grid(row=4, column=0, sticky="")
-        self.salvar["bg"] = "red"
+        self.salvar["bg"] = "salmon1"
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
         self.apagar["font"] = ("Arial", "10", "bold") 
         self.apagar["command"] = self.app.apagar
         self.apagar.grid(row=4, column=1, sticky="")
-        self.apagar["bg"] = "red"
+        self.apagar["bg"] = "salmon1"
         
         self.perfil = tk.Button(self)
         self.perfil["text"] = "Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante"
         self.perfil["font"] = ("Arial", "10", "bold") 
         self.perfil["command"] = self.app.ir_perfil
         self.perfil.grid(row=0, column=2, sticky="")
-        self.perfil["bg"] = "red"
+        self.perfil["bg"] = "salmon1"
                 
         self.tarefas_realizadas = tk.Button(self) 
         self.tarefas_realizadas["text"] = "Tarefas Realizadas"
         self.tarefas_realizadas["font"] = ("Arial","12")
         self.tarefas_realizadas["command"] = self.app.tarefas_feitas
         self.tarefas_realizadas.grid(row=1, column=2, sticky="")
-        self.tarefas_realizadas["bg"] = "red"
+        self.tarefas_realizadas["bg"] = "salmon1"
 
         self.graficos = tk.Button(self) 
         self.graficos["text"] = "Verificar Rendimento \n Semanal"
         self.graficos["font"] = ("Arial","12")
         self.graficos["command"] = self.app.ir_graficos
         self.graficos.grid(row=2, column=2, sticky="")
-        self.graficos["bg"] = "red"
+        self.graficos["bg"] = "salmon1"
         
         self.arquivar = tk.Button(self) 
         self.arquivar["text"] = "Arquivar"
         self.arquivar["font"] = ("Arial", "12", "bold")
         self.arquivar["command"] = self.app.tarefas_ar
         self.arquivar.grid(row=4, column=2, sticky="")
-        self.arquivar["bg"] = "red"
+        self.arquivar["bg"] = "salmon1"
 
 class TarefasRealizadas(tk.Frame):
     def __init__(self, app):
@@ -183,31 +179,30 @@ class TarefasRealizadas(tk.Frame):
         self.app = app
         
         self.rowconfigure(0, minsize=100, weight=1) # linhas
-        self.rowconfigure(1, minsize=300, weight=1)
+        self.rowconfigure(1, minsize=400, weight=1)
         self.rowconfigure(2, minsize=100, weight=1)
-        self.rowconfigure(3, minsize=100, weight=1)
         
         self.columnconfigure(0, minsize=200, weight=1) #colunas
         self.columnconfigure(1, minsize=400, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
         
-        self.configure(background="black")
+        self.configure(background="khaki")
         
         self.titulo = tk.Label(self, text="Tarefas Realizadas")
         self.titulo["font"] = ("Arial", "20", "bold")
         self.titulo.grid(row=0, column=0, columnspan=3, sticky="", padx=5, pady=5)
         self.titulo["foreground"]='white'
-        self.titulo["bg"]='black'
+        self.titulo["bg"]='khaki'
                 
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
-        self.voltar.grid(row=3, column=0, sticky="sw")
-        self.voltar["bg"] = "red"
+        self.voltar.grid(row=1, column=0, sticky="sw")
+        self.voltar["bg"] = "salmon1"
         
         self.lista_ar = tk.Listbox(self)
-        self.lista_ar.grid(row=1, column=0, columnspan=3, rowspan=2, sticky="nsew", padx=5, pady=5)
+        self.lista_ar.grid(row=1, column=1, sticky="")
 
 class Gráficos(tk.Frame):
     def __init__(self, app):
@@ -223,20 +218,20 @@ class Gráficos(tk.Frame):
         self.columnconfigure(1, minsize=400, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
         
-        self.configure(background="black")
+        self.configure(background="khaki")
         
         self.titulo = tk.Label(self, text="Gráfico de rendimento semanal")
         self.titulo["font"] = ("Arial", "20", "bold")
         self.titulo.grid(row=0, column=1, sticky="")
         self.titulo["foreground"]='white'
-        self.titulo["bg"]='black'
+        self.titulo["bg"]='khaki'
         
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=2, column=0, sticky="sw", padx=5, pady=5)
-        self.voltar["bg"]='red'
+        self.voltar["bg"]='salmon1'
 
 class Perfil(tk.Frame):
     def __init__(self, app):
@@ -252,20 +247,20 @@ class Perfil(tk.Frame):
         self.columnconfigure(1, minsize=400, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
                
-        self.configure(background="black")
+        self.configure(background="khaki")
         
         self.titulo = tk.Label(self, text="Configurações do Perfil")
         self.titulo["font"] = ("Arial", "20", "bold")
         self.titulo.grid(row=0, column=1, sticky="nsew")
         self.titulo["foreground"]='white'
-        self.titulo["bg"]='black'
+        self.titulo["bg"]='khaki'
         
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=1, column=0, sticky="sw")
-        self.voltar["bg"]='red'                
+        self.voltar["bg"]='salmon1'                
 
 class Aplicação:
     def __init__(self):
