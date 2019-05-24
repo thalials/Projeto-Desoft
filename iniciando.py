@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 import sqlite3
 from tkinter import *
-import tkinter as ttk
+import tkinter as tk
 #Criar conexão e cursor
 con = sqlite3.connect('banco.db')
 cur = con.cursor()
