@@ -183,8 +183,9 @@ class TarefasRealizadas(tk.Frame):
         self.app = app
         
         self.rowconfigure(0, minsize=100, weight=1) # linhas
-        self.rowconfigure(1, minsize=400, weight=1)
+        self.rowconfigure(1, minsize=300, weight=1)
         self.rowconfigure(2, minsize=100, weight=1)
+        self.rowconfigure(3, minsize=100, weight=1)
         
         self.columnconfigure(0, minsize=200, weight=1) #colunas
         self.columnconfigure(1, minsize=400, weight=1)
@@ -202,11 +203,11 @@ class TarefasRealizadas(tk.Frame):
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
-        self.voltar.grid(row=1, column=0, sticky="sw")
+        self.voltar.grid(row=3, column=0, sticky="sw")
         self.voltar["bg"] = "red"
         
         self.lista_ar = tk.Listbox(self)
-        self.lista_ar.grid(row=1, column=1, sticky="")
+        self.lista_ar.grid(row=1, column=0, columnspan=3, rowspan=2, sticky="nsew", padx=5, pady=5)
 
 class Gráficos(tk.Frame):
     def __init__(self, app):
