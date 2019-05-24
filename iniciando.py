@@ -336,5 +336,3 @@ class Aplicação:
 
 app = Aplicação()
 app.roda()
-
-#pra commitar
