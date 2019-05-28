@@ -200,14 +200,13 @@ class TarefasRealizadas(tk.Frame):
         self.columnconfigure(0, minsize=200, weight=1) #colunas
         self.columnconfigure(1, minsize=300, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
-        self.columnconfigure(3, minsize = 100, weight=1)
+        self.columnconfigure(3, minsize = 75, weight=1)
         
         self.configure(background="khaki")
         
         self.titulo = tk.Label(self, text="Tarefas Realizadas")
         self.titulo["font"] = ("Arial", "20", "bold")
-        self.titulo.grid(row=0, column=0, columnspan=3, sticky="", 
-                         padx=5, pady=5)
+        self.titulo.grid(row=0, column=0, columnspan=3, sticky="", padx=5, pady=5)
         self.titulo["foreground"]='white'
         self.titulo["bg"]='khaki'
                 
@@ -217,6 +216,13 @@ class TarefasRealizadas(tk.Frame):
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=3, column=0, sticky="sw")
         self.voltar["bg"] = "salmon1"
+        
+        self.apagar = tk.Button(self)
+        self.apagar["text"] = "Apagar"
+        self.apagar["font"] = ("Arial", "12") 
+        self.apagar["command"] = self.app.apagar1
+        self.apagar.grid(row=3, column=3, sticky="se")
+        self.apagar["bg"] = "salmon1"
         
         self.lista_ar = tk.Listbox(self)
         self.lista_ar.grid(row=1, column=0, rowspan=2, columnspan=4, sticky="nsew", padx=5, pady=5)
@@ -282,6 +288,7 @@ class Perfil(tk.Frame):
 class Aplicação:
     def __init__(self):
         self.root = tk.Tk()
+        self.root.geometry("800x600")
   
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.tela_atual = self.tela_principal
@@ -315,6 +322,13 @@ class Aplicação:
             idx = int(i) - pos
             self.botaocadastra.tarefas.delete( idx,idx )
             pos = pos + 1
+            
+    def apagar1(self):
+        items = self.tarefas_realizadas.lista_ar.curselection()
+        pos = 0
+        for i in items:
+            idx = int(i) - pos
+            self.tarefas_realizadas.lista_ar.delete( idx,idx )
     
     def cadastrausuario(self):
         self.tela_atual.grid_forget()
