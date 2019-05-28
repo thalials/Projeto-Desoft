@@ -103,8 +103,9 @@ class TelaPrincipal(tk.Frame):
        
     def cadastrausuario(self):
         self.app.nome = self.entrada1.get()
-        self.app.ocup = self.entrada2.get()
-        self.app.idade = self.entrada3.get()
+        self.app.idade = self.entrada2.get()
+        self.app.ocup = self.entrada3.get()
+
         self.app.cadastrausuario()
         
 #-----------------------------------------FUNÇÕES-----------------------------------------------------------#                
