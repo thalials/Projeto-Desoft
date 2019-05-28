@@ -26,7 +26,8 @@ class TelaPrincipal(tk.Frame):
         
         self.app = app
 #--------------------------------------TKINTER INTERFACE/ TELA DE CADASTRO ------------------------------------------------#
-
+        self.app.root.geometry("775x600")
+        
          #Configurações do design
         self.rowconfigure(0, minsize=100, weight=1) #linhas
         self.rowconfigure(1, minsize=25, weight=1)
@@ -41,18 +42,18 @@ class TelaPrincipal(tk.Frame):
         self.rowconfigure(10, minsize=25, weight=1)
         self.rowconfigure(11, minsize=25, weight=1)
         self.rowconfigure(12, minsize=25, weight=1)
-        self.rowconfigure(13, minsize=100, weight=1)
+        self.rowconfigure(13, minsize=50, weight=1)
       
         self.columnconfigure(0, minsize=50, weight=1) #colunas
-        self.columnconfigure(1, minsize=100, weight=1)
-        self.columnconfigure(2, minsize=250, weight=1)
+        self.columnconfigure(1, minsize=50, weight=1)
+        self.columnconfigure(2, minsize=50, weight=1)
         self.columnconfigure(3, minsize=250, weight=1)
         self.columnconfigure(4, minsize=100, weight=1)
         self.columnconfigure(5, minsize=50, weight=1)
        
         self.titulo = tk.Label(self, text="Registration Planner") 
         self.titulo["font"] = ("Arial", "15", "bold")
-        self.titulo.grid(row=0, column=2, sticky="nsew")
+        self.titulo.grid(row=0, column=3, sticky="nsew")
                 
         self.caixa_texto1 = tk.StringVar()
         self.caixa_texto2 = tk.StringVar()
@@ -60,7 +61,7 @@ class TelaPrincipal(tk.Frame):
         
         self.entrada1 = tk.Entry(self)
         self.entrada1.configure(textvariable = self.caixa_texto1)
-        self.entrada1.grid(row=1, column=2, sticky="nsew", padx=2, pady =1)  
+        self.entrada1.grid(row=1, column=3, sticky="nsew", padx=2, pady =1)  
   
         self.nome = tk.Label(self, text="Nome") 
         self.nome["font"] = ("Arial", "12", "bold")
@@ -109,54 +110,57 @@ class CadastroFeito(tk.Frame):
         tk.Frame.__init__(self, app.root)
         
         self.app = app
-        
+
         #Configurações do design
         self.rowconfigure(0, minsize=100, weight=1) #linhas
         self.rowconfigure(1, minsize=100, weight=1)
-        self.rowconfigure(2, minsize=200, weight=1)
+        self.rowconfigure(2, minsize=100, weight=1)
         self.rowconfigure(3, minsize=100, weight=1)
         self.rowconfigure(4, minsize=100, weight=1)
+        self.rowconfigure(5, minsize=100, weight=1)
+        
+        self.columnconfigure(0, minsize=375, weight=1) #colunas
+        self.columnconfigure(1, minsize=200, weight=1)
+        self.columnconfigure(2, minsize=50, weight=1)
+        self.columnconfigure(3, minsize=50, weight=1)
 
-        self.columnconfigure(0, minsize=300, weight=1) #colunas
-        self.columnconfigure(1, minsize=300, weight=1)
-        self.columnconfigure(2, minsize=200, weight=1)
         
         self.configure(background="khaki") #definindo cor do fundo
         
-        self.titulo1 = tk.Label(self, text="Lista de Afazeres") 
-        self.titulo1["font"] = ("Arial", "20", "bold")
-        self.titulo1.grid(row=0, column=0, sticky="")
-        self.titulo1["foreground"]='white'
+        self.titulo1 = tk.Label(self, text="Minhas tarefas") 
+        self.titulo1["font"] = ("Arial", "30", "bold")
+        self.titulo1.grid(row=1, column=0, sticky="e")
+        self.titulo1["foreground"]='black'
         self.titulo1["bg"]='khaki'
         
         self.tarefas = tk.Listbox(self)
-        self.tarefas.grid(row=1, column=0, rowspan=2, columnspan=2, 
+        self.tarefas.grid(row=2, column=0, rowspan=3, columnspan=2, 
                           sticky="nsew", padx=5)
         
         self.conteudo_caixa_texto = tk.StringVar()
         
         self.caixa_texto = tk.Entry(self)
         self.caixa_texto.configure(textvariable=self.conteudo_caixa_texto)
-        self.caixa_texto.grid(row=3, column=0, columnspan=2, 
+        self.caixa_texto.grid(row=5, column=0, columnspan=2, 
                               sticky="new", padx=5, pady=5)  
 
         self.salvar = tk.Button(self)
         self.salvar["text"] = "Salvar"
-        self.salvar["font"] = ("Arial", "10", "bold") 
+        self.salvar["font"] = ("Arial", "12", "bold") 
         self.salvar["command"] = self.app.salvar
-        self.salvar.grid(row=4, column=0, sticky="")
+        self.salvar.grid(row=3, column=2, sticky="")
         self.salvar["bg"] = "salmon1"
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
-        self.apagar["font"] = ("Arial", "10", "bold") 
+        self.apagar["font"] = ("Arial", "12", "bold") 
         self.apagar["command"] = self.app.apagar
-        self.apagar.grid(row=4, column=1, sticky="")
+        self.apagar.grid(row=5, column=2, sticky="")
         self.apagar["bg"] = "salmon1"
         
         self.perfil = tk.Button(self)
         self.perfil["text"] = "Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante"
-        self.perfil["font"] = ("Arial", "10", "bold") 
+        self.perfil["font"] = ("Arial", "12") 
         self.perfil["command"] = self.app.ir_perfil
         self.perfil.grid(row=0, column=2, sticky="")
         self.perfil["bg"] = "salmon1"
@@ -176,7 +180,7 @@ class CadastroFeito(tk.Frame):
         self.graficos["bg"] = "salmon1"
         
         self.arquivar = tk.Button(self) 
-        self.arquivar["text"] = "Arquivar"
+        self.arquivar["text"] = "Feita!"
         self.arquivar["font"] = ("Arial", "12", "bold")
         self.arquivar["command"] = self.app.tarefas_ar
         self.arquivar.grid(row=4, column=2, sticky="")
@@ -278,11 +282,7 @@ class Perfil(tk.Frame):
 class Aplicação:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.geometry("800x600")
-        
-        
-              
-       
+  
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.tela_atual = self.tela_principal
         
