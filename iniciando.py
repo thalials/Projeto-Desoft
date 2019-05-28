@@ -28,6 +28,7 @@ class TelaPrincipal(tk.Frame):
 #--------------------------------------TKINTER INTERFACE/ TELA DE CADASTRO ------------------------------------------------#
         self.app.root.geometry("775x600")
         
+       
          #Configurações do design
         self.rowconfigure(0, minsize=100, weight=1) #linhas
         self.rowconfigure(1, minsize=25, weight=1)
@@ -73,7 +74,7 @@ class TelaPrincipal(tk.Frame):
         self.entrada2.configure(textvariable = self.caixa_texto2)
         self.entrada2.grid(row=5, column=3, sticky="nsew")  
   
-        self.idade = tk.Label(self, text="idade") 
+        self.idade = tk.Label(self, text="Idade") 
         self.idade["font"] = ("Arial", "12", "bold")
         self.idade.grid(row=5, column=2, sticky="nsew")
          
@@ -165,7 +166,7 @@ class CadastroFeito(tk.Frame):
         self.apagar["bg"] = "salmon1"
         
         self.perfil = tk.Button(self)
-        self.perfil["text"] = "Perfil \n Nome: {0} \n Ocupação: {1}".format(self.app.nome, self.app.ocup)
+        self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
         self.perfil["font"] = ("Arial", "12") 
         self.perfil["command"] = self.app.ir_perfil
         self.perfil.grid(row=0, column=2, sticky="")
@@ -193,7 +194,7 @@ class CadastroFeito(tk.Frame):
         self.arquivar["bg"] = "salmon1"
 
     def update(self):
-        self.perfil["text"] = "Perfil \n Nome: {0} \n Ocupação: {1}".format(self.app.nome, self.app.ocup)
+        self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
 
 
 class TarefasRealizadas(tk.Frame):
@@ -224,14 +225,14 @@ class TarefasRealizadas(tk.Frame):
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
-        self.voltar.grid(row=3, column=0, sticky="sw")
+        self.voltar.grid(row=3, column=0, sticky="", padx=1, pady=5)
         self.voltar["bg"] = "salmon1"
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
         self.apagar["font"] = ("Arial", "12") 
         self.apagar["command"] = self.app.apagar1
-        self.apagar.grid(row=3, column=3, sticky="se")
+        self.apagar.grid(row=3, column=3, sticky="", padx=1, pady=5)
         self.apagar["bg"] = "salmon1"
         
         self.lista_ar = tk.Listbox(self)
@@ -325,7 +326,6 @@ class Aplicação:
         self.tela_atual.conteudo_caixa_texto.set("")
     
     def apertou_enter(self, event):
-        print("Apertei Enter")
         self.salvar()
         
     def apagar(self):
