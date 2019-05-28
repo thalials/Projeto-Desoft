@@ -74,7 +74,7 @@ class TelaPrincipal(tk.Frame):
         self.entrada2.configure(textvariable = self.caixa_texto2)
         self.entrada2.grid(row=5, column=3, sticky="nsew")  
   
-        self.idade = tk.Label(self, text="idade") 
+        self.idade = tk.Label(self, text="Idade") 
         self.idade["font"] = ("Arial", "12", "bold")
         self.idade.grid(row=5, column=2, sticky="nsew")
          
@@ -106,6 +106,7 @@ class TelaPrincipal(tk.Frame):
         self.app.nome = self.entrada1.get()
         self.app.idade = self.entrada2.get()
         self.app.ocup = self.entrada3.get()
+
         self.app.cadastrausuario()
         
 #-----------------------------------------FUNÇÕES-----------------------------------------------------------#                
@@ -165,7 +166,7 @@ class CadastroFeito(tk.Frame):
         self.apagar["bg"] = "salmon1"
         
         self.perfil = tk.Button(self)
-        self.perfil["text"] = "Perfil \n Nome: {0} \n Ocupação: {1}".format(self.app.nome, self.app.ocup)
+        self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
         self.perfil["font"] = ("Arial", "12") 
         self.perfil["command"] = self.app.ir_perfil
         self.perfil.grid(row=0, column=2, sticky="")
@@ -193,7 +194,7 @@ class CadastroFeito(tk.Frame):
         self.arquivar["bg"] = "salmon1"
 
     def update(self):
-        self.perfil["text"] = "Perfil \n Nome: {0} \n Ocupação: {1}".format(self.app.nome, self.app.ocup)
+        self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
 
 
 class TarefasRealizadas(tk.Frame):
