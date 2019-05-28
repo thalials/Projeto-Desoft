@@ -146,11 +146,13 @@ class CadastroFeito(tk.Frame):
         self.caixa_texto.configure(textvariable=self.conteudo_caixa_texto)
         self.caixa_texto.grid(row=5, column=0, columnspan=2, 
                               sticky="new", padx=5, pady=5)  
+        self.caixa_texto.bind("<Return>", self.app.apertou_enter)
 
         self.salvar = tk.Button(self)
         self.salvar["text"] = "Salvar"
         self.salvar["font"] = ("Arial", "12", "bold") 
         self.salvar["command"] = self.app.salvar
+        
         self.salvar.grid(row=3, column=2, sticky="")
         self.salvar["bg"] = "salmon1"
         
@@ -289,7 +291,7 @@ class Perfil(tk.Frame):
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
-        self.voltar.grid(row=1, column=0, sticky="sw")
+        self.voltar.grid(row=2, column=0, sticky="sw")
         self.voltar["bg"]='salmon1'                
 
 class Aplicação:
@@ -322,8 +324,9 @@ class Aplicação:
         self.tela_atual.conteudo_caixa_texto.set("")
     
     def apertou_enter(self, event):
-        self.root.bind('<Return>', self.salvar)
-
+        print("Apertei Enter")
+        self.salvar()
+        
     def apagar(self):
         items = self.botaocadastra.tarefas.curselection()
         pos = 0
