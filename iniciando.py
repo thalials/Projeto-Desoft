@@ -28,6 +28,7 @@ class TelaPrincipal(tk.Frame):
 #--------------------------------------TKINTER INTERFACE/ TELA DE CADASTRO ------------------------------------------------#
         self.app.root.geometry("775x600")
         
+       
          #Configurações do design
         self.rowconfigure(0, minsize=100, weight=1) #linhas
         self.rowconfigure(1, minsize=25, weight=1)
@@ -216,14 +217,14 @@ class TarefasRealizadas(tk.Frame):
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
-        self.voltar.grid(row=3, column=0, sticky="sw")
+        self.voltar.grid(row=3, column=0, sticky="", padx=1, pady=5)
         self.voltar["bg"] = "salmon1"
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
         self.apagar["font"] = ("Arial", "12") 
         self.apagar["command"] = self.app.apagar1
-        self.apagar.grid(row=3, column=3, sticky="se")
+        self.apagar.grid(row=3, column=3, sticky="", padx=1, pady=5)
         self.apagar["bg"] = "salmon1"
         
         self.lista_ar = tk.Listbox(self)
