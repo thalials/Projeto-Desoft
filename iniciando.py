@@ -2,6 +2,11 @@
 import sqlite3
 from tkinter import *
 import tkinter as tk
+import matplotlib
+matplotlib.use("TkAgg")
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+
 #Criar conexão e cursor
 con = sqlite3.connect('banco.db')
 cur = con.cursor()
@@ -44,7 +49,7 @@ class TelaPrincipal(tk.Frame):
         self.columnconfigure(3, minsize=250, weight=1)
         self.columnconfigure(4, minsize=100, weight=1)
         self.columnconfigure(5, minsize=50, weight=1)
-        
+       
         self.titulo = tk.Label(self, text="Registration Planner") 
         self.titulo["font"] = ("Arial", "15", "bold")
         self.titulo.grid(row=0, column=2, sticky="nsew")
@@ -79,10 +84,13 @@ class TelaPrincipal(tk.Frame):
       
         var = tk.IntVar()
         
-        tk.Label(self, text="Gender", font=("Arial", "12", "bold")).grid(row=11, column=1, sticky="nsew")
-        tk.Radiobutton(self, text = "Male", font = ("Arial", "12", "bold"), variable = var, value = 1).grid(row=11, column=2, sticky="nsew")
-        tk.Radiobutton(self, text = "Female", font = ("Arial", "12", "bold"), variable = var, value = 2).grid(row=11, column=3, sticky="nsew")
-
+        tk.Label(self, text="Gender", font=("Arial", "12", "bold")).grid(row=11,
+                column=1, sticky="nsew")
+        tk.Radiobutton(self, text = "Male", font = ("Arial", "12", "bold"), 
+            variable = var, value = 1).grid(row=11, column=2, sticky="nsew")
+        tk.Radiobutton(self, text = "Female", font = ("Arial", "12", "bold"), 
+            variable = var, value = 2).grid(row=11, column=3, sticky="nsew")
+       
         self.botaocadastra = tk.Button(self, text = "Cadastrar")
         self.botaocadastra["font"] = ("bold", "15")
         self.botaocadastra['bg'] = ('tomato3')
@@ -122,13 +130,15 @@ class CadastroFeito(tk.Frame):
         self.titulo1["bg"]='khaki'
         
         self.tarefas = tk.Listbox(self)
-        self.tarefas.grid(row=1, column=0, rowspan=2, columnspan=2, sticky="nsew", padx=5)
+        self.tarefas.grid(row=1, column=0, rowspan=2, columnspan=2, 
+                          sticky="nsew", padx=5)
         
         self.conteudo_caixa_texto = tk.StringVar()
         
         self.caixa_texto = tk.Entry(self)
         self.caixa_texto.configure(textvariable=self.conteudo_caixa_texto)
-        self.caixa_texto.grid(row=3, column=0, columnspan=2, sticky="new", padx=5, pady=5)  
+        self.caixa_texto.grid(row=3, column=0, columnspan=2, 
+                              sticky="new", padx=5, pady=5)  
 
         self.salvar = tk.Button(self)
         self.salvar["text"] = "Salvar"
@@ -192,7 +202,8 @@ class TarefasRealizadas(tk.Frame):
         
         self.titulo = tk.Label(self, text="Tarefas Realizadas")
         self.titulo["font"] = ("Arial", "20", "bold")
-        self.titulo.grid(row=0, column=0, columnspan=3, sticky="", padx=5, pady=5)
+        self.titulo.grid(row=0, column=0, columnspan=3, sticky="", 
+                         padx=5, pady=5)
         self.titulo["foreground"]='white'
         self.titulo["bg"]='khaki'
                 
@@ -268,7 +279,10 @@ class Aplicação:
     def __init__(self):
         self.root = tk.Tk()
         self.root.geometry("800x600")
-
+        
+        
+              
+       
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.tela_atual = self.tela_principal
         
@@ -287,12 +301,11 @@ class Aplicação:
         self.tela_atual = self.botaocadastra 
 
     def salvar(self):
-        self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + self.tela_atual.conteudo_caixa_texto.get())
+        self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + 
+                                self.tela_atual.conteudo_caixa_texto.get())
         self.tela_atual.conteudo_caixa_texto.set("")
     
     def apertou_enter(self, event):
-#        self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + self.tela_atual.conteudo_caixa_texto.get())
-#        self.tela_atual.conteudo_caixa_texto.set("")
         self.root.bind('<Return>', self.salvar)
 
     def apagar(self):
