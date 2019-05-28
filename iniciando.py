@@ -44,12 +44,13 @@ class TelaPrincipal(tk.Frame):
         self.rowconfigure(12, minsize=25, weight=1)
         self.rowconfigure(13, minsize=50, weight=1)
       
-        self.columnconfigure(0, minsize=50, weight=1) #colunas
-        self.columnconfigure(1, minsize=50, weight=1)
-        self.columnconfigure(2, minsize=50, weight=1)
-        self.columnconfigure(3, minsize=250, weight=1)
-        self.columnconfigure(4, minsize=100, weight=1)
-        self.columnconfigure(5, minsize=50, weight=1)
+        self.columnconfigure(0, minsize = 100, weight=1) #colunas
+        self.columnconfigure(1, minsize = 50, weight=1)
+        self.columnconfigure(2, minsize = 50, weight=1)
+        self.columnconfigure(3, minsize = 275, weight=1)
+        self.columnconfigure(4, minsize = 100, weight=1)
+        self.columnconfigure(5, minsize = 50, weight=1)
+
        
         self.titulo = tk.Label(self, text="Registration Planner") 
         self.titulo["font"] = ("Arial", "15", "bold")
@@ -61,43 +62,44 @@ class TelaPrincipal(tk.Frame):
         
         self.entrada1 = tk.Entry(self)
         self.entrada1.configure(textvariable = self.caixa_texto1)
-        self.entrada1.grid(row=1, column=3, sticky="nsew", padx=2, pady =1)  
+        self.entrada1.grid(row=2, column=3, sticky="nsew", padx=2, pady =1)  
+
   
         self.nome = tk.Label(self, text="Nome") 
         self.nome["font"] = ("Arial", "12", "bold")
-        self.nome.grid(row=1, column=1, sticky="nsew")
+        self.nome.grid(row=2, column=2, sticky="nsew")
        
         self.entrada2 = tk.Entry(self)
         self.entrada2.configure(textvariable = self.caixa_texto2)
-        self.entrada2.grid(row=4, column=2, sticky="nsew")  
+        self.entrada2.grid(row=5, column=3, sticky="nsew")  
   
         self.email = tk.Label(self, text="Email") 
         self.email["font"] = ("Arial", "12", "bold")
-        self.email.grid(row=4, column=1, sticky="nsew")
+        self.email.grid(row=5, column=2, sticky="nsew")
          
         self.entrada3 = tk.Entry(self)
         self.entrada3.configure(textvariable = self.caixa_texto3)
-        self.entrada3.grid(row=7, column=2, sticky="nsew")  
+        self.entrada3.grid(row=8, column=3, sticky="nsew")  
   
         self.ocup = tk.Label(self, text="Ocupação") 
         self.ocup["font"] = ("Arial", "12", "bold")
-        self.ocup.grid(row=7, column=1, sticky="nsew")
+        self.ocup.grid(row=8, column=2, sticky="nsew")
       
         var = tk.IntVar()
-        
-        tk.Label(self, text="Gender", font=("Arial", "12", "bold")).grid(row=11,
-                column=1, sticky="nsew")
-        tk.Radiobutton(self, text = "Male", font = ("Arial", "12", "bold"), 
-            variable = var, value = 1).grid(row=11, column=2, sticky="nsew")
-        tk.Radiobutton(self, text = "Female", font = ("Arial", "12", "bold"), 
-            variable = var, value = 2).grid(row=11, column=3, sticky="nsew")
-       
+#        
+#        tk.Label(self, text="Gender", font=("Arial", "12", "bold")).grid(row=11,
+#                column=2, sticky="nsew")
+#        tk.Radiobutton(self, text = "Male", font = ("Arial", "12", "bold"), 
+#            variable = var, value = 1).grid(row=11, column=3, sticky="nsew")
+#        tk.Radiobutton(self, text = "Female", font = ("Arial", "12", "bold"), 
+#            variable = var, value = 2).grid(row=11, column=4, sticky="nsew")
+#       
         self.botaocadastra = tk.Button(self, text = "Cadastrar")
         self.botaocadastra["font"] = ("bold", "15")
         self.botaocadastra['bg'] = ('tomato3')
         self.botaocadastra['fg'] = ('white')
         self.botaocadastra["command"] = self.app.cadastrausuario
-        self.botaocadastra.grid(row = 13 , column = 2, sticky = "nsew")
+        self.botaocadastra.grid(row = 13 , column = 3, sticky = "nsew")
        
         def cadastrausuario(self):
             nome = self.nome.get()
