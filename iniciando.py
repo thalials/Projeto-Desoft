@@ -291,7 +291,8 @@ class Aplicação:
     def __init__(self):
         self.root = tk.Tk()
         self.root.geometry("800x600")
-  
+        self.root.title(string='MyPlanner')
+        
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.tela_atual = self.tela_principal
         
