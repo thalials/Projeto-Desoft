@@ -73,9 +73,9 @@ class TelaPrincipal(tk.Frame):
         self.entrada2.configure(textvariable = self.caixa_texto2)
         self.entrada2.grid(row=5, column=3, sticky="nsew")  
   
-        self.email = tk.Label(self, text="Email") 
-        self.email["font"] = ("Arial", "12", "bold")
-        self.email.grid(row=5, column=2, sticky="nsew")
+        self.idade = tk.Label(self, text="idade") 
+        self.idade["font"] = ("Arial", "12", "bold")
+        self.idade.grid(row=5, column=2, sticky="nsew")
          
         self.entrada3 = tk.Entry(self)
         self.entrada3.configure(textvariable = self.caixa_texto3)
@@ -98,13 +98,14 @@ class TelaPrincipal(tk.Frame):
         self.botaocadastra["font"] = ("bold", "15")
         self.botaocadastra['bg'] = ('tomato3')
         self.botaocadastra['fg'] = ('white')
-        self.botaocadastra["command"] = self.app.cadastrausuario
+        self.botaocadastra["command"] = self.cadastrausuario
         self.botaocadastra.grid(row = 13 , column = 3, sticky = "nsew")
        
-        def cadastrausuario(self):
-            nome = self.nome.get()
-            ocup = self.ocup.get()
-            email = self.email.get() 
+    def cadastrausuario(self):
+        self.app.nome = self.entrada1.get()
+        self.app.ocup = self.entrada2.get()
+        self.app.idade = self.entrada3.get()
+        self.app.cadastrausuario()
         
 #-----------------------------------------FUNÇÕES-----------------------------------------------------------#                
 class CadastroFeito(tk.Frame):
@@ -161,7 +162,7 @@ class CadastroFeito(tk.Frame):
         self.apagar["bg"] = "salmon1"
         
         self.perfil = tk.Button(self)
-        self.perfil["text"] = "Perfil \n Nome: Kathleen da Silva \n Ocupação: Estudante"
+        self.perfil["text"] = "Perfil \n Nome: {0} \n Ocupação: {1}".format(self.app.nome, self.app.ocup)
         self.perfil["font"] = ("Arial", "12") 
         self.perfil["command"] = self.app.ir_perfil
         self.perfil.grid(row=0, column=2, sticky="")
@@ -187,6 +188,10 @@ class CadastroFeito(tk.Frame):
         self.arquivar["command"] = self.app.tarefas_ar
         self.arquivar.grid(row=4, column=2, sticky="")
         self.arquivar["bg"] = "salmon1"
+
+    def update(self):
+        self.perfil["text"] = "Perfil \n Nome: {0} \n Ocupação: {1}".format(self.app.nome, self.app.ocup)
+
 
 class TarefasRealizadas(tk.Frame):
     def __init__(self, app):
@@ -289,20 +294,21 @@ class Perfil(tk.Frame):
 
 class Aplicação:
     def __init__(self):
+        self.nome = ""
+        self.ocup = ""
+        self.idade = ""
+        
         self.root = tk.Tk()
-        self.root.geometry("800x600")
+        self.root.geometry("775x600")
         self.root.title(string='MyPlanner')
         
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
-        self.tela_atual = self.tela_principal
-        
-        self.perfil = Perfil(self)
-        self.tela_atual.grid()
         self.botaocadastra = CadastroFeito(self)
         self.tarefas_realizadas = TarefasRealizadas(self)
         self.graficos = Gráficos(self) 
         self.perfil = Perfil(self)
         
+        self.tela_atual = self.tela_principal
         self.tela_atual.grid()
         
     def mudar_tela_principal(self):
@@ -335,6 +341,7 @@ class Aplicação:
     
     def cadastrausuario(self):
         self.tela_atual.grid_forget()
+        self.botaocadastra.update()
         self.botaocadastra.grid()
         self.tela_atual = self.botaocadastra  
         
