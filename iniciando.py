@@ -319,7 +319,6 @@ class Aplicação:
         self.tela_atual.conteudo_caixa_texto.set("")
     
     def apertou_enter(self, event):
-        print("Apertei Enter")
         self.salvar()
         
     def apagar(self):
