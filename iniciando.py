@@ -131,7 +131,7 @@ class CadastroFeito(tk.Frame):
         
         self.titulo1 = tk.Label(self, text="Minhas tarefas") 
         self.titulo1["font"] = ("Arial", "30", "bold")
-        self.titulo1.grid(row=1, column=0, sticky="e")
+        self.titulo1.grid(row=1, column=0, sticky="n")
         self.titulo1["foreground"]='black'
         self.titulo1["bg"]='khaki'
         
@@ -209,7 +209,7 @@ class TarefasRealizadas(tk.Frame):
         self.titulo = tk.Label(self, text="Tarefas Realizadas")
         self.titulo["font"] = ("Arial", "20", "bold")
         self.titulo.grid(row=0, column=0, columnspan=3, sticky="", padx=5, pady=5)
-        self.titulo["foreground"]='white'
+        self.titulo["foreground"]='black'
         self.titulo["bg"]='khaki'
                 
         self.voltar = tk.Button(self) #botão 1
@@ -248,7 +248,7 @@ class Gráficos(tk.Frame):
         self.titulo = tk.Label(self, text="Gráfico de rendimento semanal")
         self.titulo["font"] = ("Arial", "20", "bold")
         self.titulo.grid(row=0, column=1, sticky="")
-        self.titulo["foreground"]='white'
+        self.titulo["foreground"]='black'
         self.titulo["bg"]='khaki'
         
         self.voltar = tk.Button(self) #botão 1
@@ -257,7 +257,7 @@ class Gráficos(tk.Frame):
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=2, column=0, sticky="sw", padx=5, pady=5)
         self.voltar["bg"]='salmon1'
-
+        
 class Perfil(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
