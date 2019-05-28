@@ -140,6 +140,7 @@ class CadastroFeito(tk.Frame):
         self.tarefas = tk.Listbox(self)
         self.tarefas.grid(row=2, column=0, rowspan=3, columnspan=2, 
                           sticky="nsew", padx=5)
+        self.tarefas.bind("<Delete>", self.app.apertou_delete)
         
         self.conteudo_caixa_texto = tk.StringVar()
         
@@ -153,7 +154,6 @@ class CadastroFeito(tk.Frame):
         self.salvar["text"] = "Salvar"
         self.salvar["font"] = ("Arial", "12", "bold") 
         self.salvar["command"] = self.app.salvar
-        
         self.salvar.grid(row=3, column=2, sticky="")
         self.salvar["bg"] = "salmon1"
         
@@ -326,6 +326,9 @@ class Aplicação:
     
     def apertou_enter(self, event):
         self.salvar()
+        
+    def apertou_delete(self, event):
+        self.apagar()
         
     def apagar(self):
         items = self.botaocadastra.tarefas.curselection()
