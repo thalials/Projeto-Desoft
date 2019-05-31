@@ -1,5 +1,4 @@
-﻿# -*- coding: utf-8 -*-
-import sqlite3
+﻿import sqlite3
 from tkinter import *
 import tkinter as tk
 import matplotlib
@@ -165,10 +164,8 @@ class CadastroFeito(tk.Frame):
         self.apagar.grid(row=5, column=2, sticky="")
         self.apagar["bg"] = "salmon1"
         
-        self.perfil = tk.Button(self)
-        self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
+        self.perfil = tk.Label(self, text="Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup))
         self.perfil["font"] = ("Arial", "12") 
-        self.perfil["command"] = self.app.ir_perfil
         self.perfil.grid(row=0, column=2, sticky="")
         self.perfil["bg"] = "salmon1"
                 
@@ -265,36 +262,7 @@ class Gráficos(tk.Frame):
         self.voltar["font"] = ("Arial", "12")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=2, column=0, sticky="sw", padx=5, pady=5)
-        self.voltar["bg"]='salmon1'
-        
-class Perfil(tk.Frame):
-    def __init__(self, app):
-        tk.Frame.__init__(self, app.root)
-        
-        self.app = app
-        
-        self.rowconfigure(0, minsize=200, weight=1)
-        self.rowconfigure(1, minsize=200, weight=1)
-        self.rowconfigure(2, minsize=200, weight=1)
-        
-        self.columnconfigure(0, minsize=200, weight=1) #colunas
-        self.columnconfigure(1, minsize=400, weight=1)
-        self.columnconfigure(2, minsize=200, weight=1)
-               
-        self.configure(background="khaki")
-        
-        self.titulo = tk.Label(self, text="Configurações do Perfil")
-        self.titulo["font"] = ("Arial", "20", "bold")
-        self.titulo.grid(row=0, column=1, sticky="nsew")
-        self.titulo["foreground"]='white'
-        self.titulo["bg"]='khaki'
-        
-        self.voltar = tk.Button(self) #botão 1
-        self.voltar["text"] = "Voltar"
-        self.voltar["font"] = ("Arial", "12")
-        self.voltar["command"] = self.app.mudar_tela_principal
-        self.voltar.grid(row=2, column=0, sticky="sw")
-        self.voltar["bg"]='salmon1'                
+        self.voltar["bg"]='salmon1'           
 
 class Aplicação:
     def __init__(self):
@@ -310,7 +278,6 @@ class Aplicação:
         self.botaocadastra = CadastroFeito(self)
         self.tarefas_realizadas = TarefasRealizadas(self)
         self.graficos = Gráficos(self) 
-        self.perfil = Perfil(self)
         
         self.tela_atual = self.tela_principal
         self.tela_atual.grid()
