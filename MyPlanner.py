@@ -318,11 +318,13 @@ class Aplicação:
             salvando_tarefas = self.tela_atual.conteudo_caixa_texto.get()
             self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + 
                             self.tela_atual.conteudo_caixa_texto.get())
+            
             self.tela_atual.conteudo_caixa_texto.set("")
             self.salva_tarefas(salvando_tarefas) 
             
     def apertou_enter(self, event):
         self.salvar()
+
         
     def apertou_delete(self, event):
         self.apagar()
@@ -341,7 +343,6 @@ class Aplicação:
         for i in items:
             idx = int(i) - pos
             self.tarefas_realizadas.lista_feito.delete( idx,idx )
-#            self.app.tempo_tarefas_feito.delete( idx, idx )
     
     def cadastrausuario(self):
         self.tela_atual.grid_forget()
@@ -353,7 +354,6 @@ class Aplicação:
         self.tela_atual.grid_forget()
         self.tarefas_realizadas.grid()
         self.tela_atual = self.tarefas_realizadas
-#        print(self.tempos_tarefa_feito)
         
     def ir_rendimento(self):
         self.botaocadastra.grid_forget()
@@ -361,10 +361,8 @@ class Aplicação:
         self.tela_atual = self.rendimento
         
     def tarefas_feito(self):
-        tempo = date.today()
         for i in self.botaocadastra.tarefas.curselection():
             self.tarefas_realizadas.lista_feito.insert(tk.END, self.tela_atual.tarefas.get(i))
-#            self.tempos_tarefa_feito.append(tempo)
         items = self.botaocadastra.tarefas.curselection()
         pos = 0
         for i in items:
