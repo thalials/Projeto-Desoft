@@ -189,6 +189,11 @@ class CadastroFeito(tk.Frame):
         self.arquivar["command"] = self.app.tarefas_ar
         self.arquivar.grid(row=4, column=2, sticky="")
         self.arquivar["bg"] = "salmon1"
+        
+        self.vazia = tk.Label(self, text="")
+        self.vazia["font"] = ("Arial", "12") 
+        self.vazia.grid(row=1, column=1, sticky="")
+        self.vazia["bg"] = "khaki"
 
     def update(self):
         self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
@@ -290,6 +295,7 @@ class Aplicação:
     def salvar(self):
         if len(self.tela_atual.conteudo_caixa_texto.get()) == 0:
             print("digite uma tarefa")
+            
         else:
             self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + 
                             self.tela_atual.conteudo_caixa_texto.get())
