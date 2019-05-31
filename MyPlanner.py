@@ -94,14 +94,7 @@ class TelaPrincipal(tk.Frame):
         self.ocup["bg"] = "khaki"
         
         var = tk.IntVar()
-#        
-#        tk.Label(self, text="Gender", font=("Times New Roman", "15", "bold")).grid(row=11,
-#                column=2, sticky="nsew")
-#        tk.Radiobutton(self, text = "Male", font = ("Times New Roman", "15", "bold"), 
-#            variable = var, value = 1).grid(row=11, column=3, sticky="nsew")
-#        tk.Radiobutton(self, text = "Female", font = ("Times New Roman", "15", "bold"), 
-#            variable = var, value = 2).grid(row=11, column=4, sticky="nsew")
-#       
+
         self.botaocadastra = tk.Button(self, text = "Cadastrar")
         self.botaocadastra["font"] = ("Times New Roman", "15", "bold")
         self.botaocadastra['bg'] = ('tomato3')
@@ -321,10 +314,6 @@ class Aplicação:
             
             self.tela_atual.conteudo_caixa_texto.set("")
             self.salva_tarefas(salvando_tarefas) 
-            
-    def apertou_enter(self, event):
-        self.salvar()
-
         
     def apertou_delete(self, event):
         self.apagar()
@@ -349,6 +338,9 @@ class Aplicação:
         self.botaocadastra.update()
         self.botaocadastra.grid()
         self.tela_atual = self.botaocadastra  
+                    
+    def apertou_enter(self, event):
+        self.salvar()
         
     def tarefas_feitas(self):
         self.tela_atual.grid_forget()
