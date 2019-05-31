@@ -321,9 +321,13 @@ class Aplicação:
         self.tela_atual = self.botaocadastra 
 
     def salvar(self):
-        self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + 
-                                self.tela_atual.conteudo_caixa_texto.get())
-        self.tela_atual.conteudo_caixa_texto.set("")
+        if len(self.tela_atual.conteudo_caixa_texto.get()) == 0:
+            print("digite uma tarefa")
+        else:
+            self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + 
+                            self.tela_atual.conteudo_caixa_texto.get())
+            self.tela_atual.conteudo_caixa_texto.set("")
+      
     
     def apertou_enter(self, event):
         self.salvar()
