@@ -44,6 +44,8 @@ class TelaPrincipal(tk.Frame):
         self.rowconfigure(11, minsize=25, weight=1)
         self.rowconfigure(12, minsize=25, weight=1)
         self.rowconfigure(13, minsize=50, weight=1)
+        self.rowconfigure(14, minsize=150, weight=1)
+      
       
         self.columnconfigure(0, minsize = 100, weight=1) #colunas
         self.columnconfigure(1, minsize = 50, weight=1)
@@ -51,11 +53,13 @@ class TelaPrincipal(tk.Frame):
         self.columnconfigure(3, minsize = 275, weight=1)
         self.columnconfigure(4, minsize = 100, weight=1)
         self.columnconfigure(5, minsize = 50, weight=1)
+        self.columnconfigure(6, minsize = 100, weight=1)
+        self.columnconfigure(7, minsize = 25, weight=1)
         
         self.configure(background="khaki") #definindo cor do fundo
        
         self.titulo = tk.Label(self, text="Registration Planner") 
-        self.titulo["font"] = ("Arial", "15", "bold")
+        self.titulo["font"] = ("Times New Roman", "20", "bold")
         self.titulo.grid(row=0, column=3, sticky="nsew")
         self.titulo["bg"] = "khaki"
                 
@@ -70,7 +74,7 @@ class TelaPrincipal(tk.Frame):
         self.entrada1.grid(row=2, column=3, sticky="nsew", padx=2, pady =1)  
   
         self.nome = tk.Label(self, text="Nome") 
-        self.nome["font"] = ("Arial", "12", "bold")
+        self.nome["font"] = ("Times New Roman", "15", "bold")
         self.nome.grid(row=2, column=2, sticky="nsew")
         self.nome["bg"] = "khaki"
        
@@ -79,7 +83,7 @@ class TelaPrincipal(tk.Frame):
         self.entrada2.grid(row=5, column=3, sticky="nsew") 
   
         self.idade = tk.Label(self, text="Idade") 
-        self.idade["font"] = ("Arial", "12", "bold")
+        self.idade["font"] = ("Times New Roman", "15", "bold")
         self.idade.grid(row=5, column=2, sticky="nsew")
         self.idade["bg"] = "khaki"
          
@@ -88,21 +92,21 @@ class TelaPrincipal(tk.Frame):
         self.entrada3.grid(row=8, column=3, sticky="nsew") 
   
         self.ocup = tk.Label(self, text="Ocupação") 
-        self.ocup["font"] = ("Arial", "12", "bold")
+        self.ocup["font"] = ("Times New Roman", "15", "bold")
         self.ocup.grid(row=8, column=2, sticky="nsew")
         self.ocup["bg"] = "khaki"
         
         var = tk.IntVar()
 #        
-#        tk.Label(self, text="Gender", font=("Arial", "12", "bold")).grid(row=11,
+#        tk.Label(self, text="Gender", font=("Times New Roman", "15", "bold")).grid(row=11,
 #                column=2, sticky="nsew")
-#        tk.Radiobutton(self, text = "Male", font = ("Arial", "12", "bold"), 
+#        tk.Radiobutton(self, text = "Male", font = ("Times New Roman", "15", "bold"), 
 #            variable = var, value = 1).grid(row=11, column=3, sticky="nsew")
-#        tk.Radiobutton(self, text = "Female", font = ("Arial", "12", "bold"), 
+#        tk.Radiobutton(self, text = "Female", font = ("Times New Roman", "15", "bold"), 
 #            variable = var, value = 2).grid(row=11, column=4, sticky="nsew")
 #       
         self.botaocadastra = tk.Button(self, text = "Cadastrar")
-        self.botaocadastra["font"] = ("bold", "15")
+        self.botaocadastra["font"] = ("Times New Roman", "15", "bold")
         self.botaocadastra['bg'] = ('tomato3')
         self.botaocadastra['fg'] = ('white')
         self.botaocadastra["command"] = self.cadastrausuario
@@ -139,7 +143,7 @@ class CadastroFeito(tk.Frame):
         self.configure(background="khaki") #definindo cor do fundo
         
         self.titulo1 = tk.Label(self, text="Minhas tarefas") 
-        self.titulo1["font"] = ("Arial", "30", "bold")
+        self.titulo1["font"] = ("Times New Roman", "30", "bold")
         self.titulo1.grid(row=1, column=0, sticky="n")
         self.titulo1["foreground"]='black'
         self.titulo1["bg"]='khaki'
@@ -159,40 +163,40 @@ class CadastroFeito(tk.Frame):
 
         self.salvar = tk.Button(self)
         self.salvar["text"] = "Salvar"
-        self.salvar["font"] = ("Arial", "12", "bold") 
+        self.salvar["font"] = ("Times New Roman", "15", "bold") 
         self.salvar["command"] = self.app.salvar
         self.salvar.grid(row=3, column=2, sticky="")
         self.salvar["bg"] = "salmon1"
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
-        self.apagar["font"] = ("Arial", "12", "bold") 
+        self.apagar["font"] = ("Times New Roman", "15", "bold") 
         self.apagar["command"] = self.app.apagar
         self.apagar.grid(row=5, column=2, sticky="")
         self.apagar["bg"] = "salmon1"
         
         self.perfil = tk.Label(self, text="Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup))
-        self.perfil["font"] = ("Arial", "12") 
+        self.perfil["font"] = ("Times New Roman", "15") 
         self.perfil.grid(row=0, column=2, sticky="")
         self.perfil["bg"] = "salmon1"
                 
         self.tarefas_realizadas = tk.Button(self) 
         self.tarefas_realizadas["text"] = "Tarefas Realizadas"
-        self.tarefas_realizadas["font"] = ("Arial","12")
+        self.tarefas_realizadas["font"] = ("Times New Roman","15")
         self.tarefas_realizadas["command"] = self.app.tarefas_feitas
         self.tarefas_realizadas.grid(row=1, column=2, sticky="")
         self.tarefas_realizadas["bg"] = "salmon1"
 
         self.rendimento = tk.Button(self) 
         self.rendimento["text"] = "Verificar Rendimento \n Semanal"
-        self.rendimento["font"] = ("Arial","12")
+        self.rendimento["font"] = ("Times New Roman","15")
         self.rendimento["command"] = self.app.ir_rendimento
         self.rendimento.grid(row=2, column=2, sticky="")
         self.rendimento["bg"] = "salmon1"
         
         self.feita = tk.Button(self) 
         self.feita["text"] = "Feita!"
-        self.feita["font"] = ("Arial", "12", "bold")
+        self.feita["font"] = ("Times New Roman", "15", "bold")
         self.feita["command"] = self.app.tarefas_feito
         self.feita.grid(row=4, column=2, sticky="")
         self.feita["bg"] = "salmon1"
@@ -220,21 +224,21 @@ class TarefasRealizadas(tk.Frame):
         self.configure(background="khaki")
         
         self.titulo = tk.Label(self, text="Tarefas Realizadas")
-        self.titulo["font"] = ("Arial", "20", "bold")
+        self.titulo["font"] = ("Times New Roman", "20", "bold")
         self.titulo.grid(row=0, column=0, columnspan=3, sticky="", padx=5, pady=5)
         self.titulo["foreground"]='black'
         self.titulo["bg"]='khaki'
                 
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
-        self.voltar["font"] = ("Arial", "12")
+        self.voltar["font"] = ("Times New Roman", "15")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=3, column=0, sticky="", padx=1, pady=5)
         self.voltar["bg"] = "salmon1"
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
-        self.apagar["font"] = ("Arial", "12") 
+        self.apagar["font"] = ("Times New Roman", "15") 
         self.apagar["command"] = self.app.apagar1
         self.apagar.grid(row=3, column=3, sticky="", padx=1, pady=5)
         self.apagar["bg"] = "salmon1"
@@ -259,14 +263,14 @@ class Rendimento(tk.Frame):
         self.configure(background="khaki")
         
         self.titulo = tk.Label(self, text="Rendimento semanal")
-        self.titulo["font"] = ("Arial", "20", "bold")
+        self.titulo["font"] = ("Times New Roman", "20", "bold")
         self.titulo.grid(row=0, column=1, sticky="")
         self.titulo["foreground"]='black'
         self.titulo["bg"]='khaki'
         
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
-        self.voltar["font"] = ("Arial", "12")
+        self.voltar["font"] = ("Times New Roman", "15")
         self.voltar["command"] = self.app.mudar_tela_principal
         self.voltar.grid(row=2, column=0, sticky="sw", padx=5, pady=5)
         self.voltar["bg"]='salmon1'           
