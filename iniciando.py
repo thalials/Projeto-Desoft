@@ -5,7 +5,7 @@ import matplotlib
 matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
-from datetime import date
+#from datetime import date
 
 #Criar conexão e cursor
 con = sqlite3.connect('banco.db')
@@ -51,41 +51,47 @@ class TelaPrincipal(tk.Frame):
         self.columnconfigure(3, minsize = 275, weight=1)
         self.columnconfigure(4, minsize = 100, weight=1)
         self.columnconfigure(5, minsize = 50, weight=1)
-
+        
+        self.configure(background="khaki") #definindo cor do fundo
        
         self.titulo = tk.Label(self, text="Registration Planner") 
         self.titulo["font"] = ("Arial", "15", "bold")
         self.titulo.grid(row=0, column=3, sticky="nsew")
+        self.titulo["bg"] = "khaki"
                 
         self.caixa_texto1 = tk.StringVar()
+        
         self.caixa_texto2 = tk.StringVar()
+        
         self.caixa_texto3 = tk.StringVar()
         
         self.entrada1 = tk.Entry(self)
         self.entrada1.configure(textvariable = self.caixa_texto1)
         self.entrada1.grid(row=2, column=3, sticky="nsew", padx=2, pady =1)  
-
   
         self.nome = tk.Label(self, text="Nome") 
         self.nome["font"] = ("Arial", "12", "bold")
         self.nome.grid(row=2, column=2, sticky="nsew")
+        self.nome["bg"] = "khaki"
        
         self.entrada2 = tk.Entry(self)
         self.entrada2.configure(textvariable = self.caixa_texto2)
-        self.entrada2.grid(row=5, column=3, sticky="nsew")  
+        self.entrada2.grid(row=5, column=3, sticky="nsew") 
   
         self.idade = tk.Label(self, text="Idade") 
         self.idade["font"] = ("Arial", "12", "bold")
         self.idade.grid(row=5, column=2, sticky="nsew")
+        self.idade["bg"] = "khaki"
          
         self.entrada3 = tk.Entry(self)
         self.entrada3.configure(textvariable = self.caixa_texto3)
-        self.entrada3.grid(row=8, column=3, sticky="nsew")  
+        self.entrada3.grid(row=8, column=3, sticky="nsew") 
   
         self.ocup = tk.Label(self, text="Ocupação") 
         self.ocup["font"] = ("Arial", "12", "bold")
         self.ocup.grid(row=8, column=2, sticky="nsew")
-      
+        self.ocup["bg"] = "khaki"
+        
         var = tk.IntVar()
 #        
 #        tk.Label(self, text="Gender", font=("Arial", "12", "bold")).grid(row=11,
@@ -177,19 +183,19 @@ class CadastroFeito(tk.Frame):
         self.tarefas_realizadas.grid(row=1, column=2, sticky="")
         self.tarefas_realizadas["bg"] = "salmon1"
 
-        self.graficos = tk.Button(self) 
-        self.graficos["text"] = "Verificar Rendimento \n Semanal"
-        self.graficos["font"] = ("Arial","12")
-        self.graficos["command"] = self.app.ir_graficos
-        self.graficos.grid(row=2, column=2, sticky="")
-        self.graficos["bg"] = "salmon1"
+        self.rendimento = tk.Button(self) 
+        self.rendimento["text"] = "Verificar Rendimento \n Semanal"
+        self.rendimento["font"] = ("Arial","12")
+        self.rendimento["command"] = self.app.ir_rendimento
+        self.rendimento.grid(row=2, column=2, sticky="")
+        self.rendimento["bg"] = "salmon1"
         
-        self.arquivar = tk.Button(self) 
-        self.arquivar["text"] = "Feita!"
-        self.arquivar["font"] = ("Arial", "12", "bold")
-        self.arquivar["command"] = self.app.tarefas_ar
-        self.arquivar.grid(row=4, column=2, sticky="")
-        self.arquivar["bg"] = "salmon1"
+        self.feita = tk.Button(self) 
+        self.feita["text"] = "Feita!"
+        self.feita["font"] = ("Arial", "12", "bold")
+        self.feita["command"] = self.app.tarefas_feito
+        self.feita.grid(row=4, column=2, sticky="")
+        self.feita["bg"] = "salmon1"
 
     def update(self):
         self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
@@ -233,10 +239,10 @@ class TarefasRealizadas(tk.Frame):
         self.apagar.grid(row=3, column=3, sticky="", padx=1, pady=5)
         self.apagar["bg"] = "salmon1"
         
-        self.lista_ar = tk.Listbox(self)
-        self.lista_ar.grid(row=1, column=0, rowspan=2, columnspan=4, sticky="nsew", padx=5, pady=5)
+        self.lista_feito = tk.Listbox(self)
+        self.lista_feito.grid(row=1, column=0, rowspan=2, columnspan=4, sticky="nsew", padx=5, pady=5)
         
-class Gráficos(tk.Frame):
+class Rendimento(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
         
@@ -252,7 +258,7 @@ class Gráficos(tk.Frame):
         
         self.configure(background="khaki")
         
-        self.titulo = tk.Label(self, text="Gráfico de rendimento semanal")
+        self.titulo = tk.Label(self, text="Rendimento semanal")
         self.titulo["font"] = ("Arial", "20", "bold")
         self.titulo.grid(row=0, column=1, sticky="")
         self.titulo["foreground"]='black'
@@ -278,9 +284,9 @@ class Aplicação:
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.botaocadastra = CadastroFeito(self)
         self.tarefas_realizadas = TarefasRealizadas(self)
-        self.graficos = Gráficos(self) 
+        self.rendimento = Rendimento(self) 
         
-        self.tempos_tarefa_ar = []
+#        self.tempos_tarefa_feito = []
         
         self.tela_atual = self.tela_principal
         self.tela_atual.grid()
@@ -314,11 +320,12 @@ class Aplicação:
             pos = pos + 1
             
     def apagar1(self):
-        items = self.tarefas_realizadas.lista_ar.curselection()
+        items = self.tarefas_realizadas.lista_feito.curselection()
         pos = 0
         for i in items:
             idx = int(i) - pos
-            self.tarefas_realizadas.lista_ar.delete( idx,idx )
+            self.tarefas_realizadas.lista_feito.delete( idx,idx )
+#            self.app.tempo_tarefas_feito.delete( idx, idx )
     
     def cadastrausuario(self):
         self.tela_atual.grid_forget()
@@ -330,22 +337,18 @@ class Aplicação:
         self.tela_atual.grid_forget()
         self.tarefas_realizadas.grid()
         self.tela_atual = self.tarefas_realizadas
-        print(self.tempos_tarefa_ar)
-    def ir_graficos(self):
-        self.botaocadastra.grid_forget()
-        self.graficos.grid()
-        self.tela_atual = self.graficos
-
-    def ir_perfil(self):
-        self.botaocadastra.grid_forget()
-        self.perfil.grid()
-        self.tela_atual = self.perfil
+#        print(self.tempos_tarefa_feito)
         
-    def tarefas_ar(self):
+    def ir_rendimento(self):
+        self.botaocadastra.grid_forget()
+        self.rendimento.grid()
+        self.tela_atual = self.rendimento
+        
+    def tarefas_feito(self):
         tempo = date.today()
         for i in self.botaocadastra.tarefas.curselection():
-            self.tarefas_realizadas.lista_ar.insert(tk.END, self.tela_atual.tarefas.get(i))
-            self.tempos_tarefa_ar.append(tempo)
+            self.tarefas_realizadas.lista_feito.insert(tk.END, self.tela_atual.tarefas.get(i))
+#            self.tempos_tarefa_feito.append(tempo)
         items = self.botaocadastra.tarefas.curselection()
         pos = 0
         for i in items:
