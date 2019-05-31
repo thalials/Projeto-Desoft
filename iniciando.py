@@ -5,6 +5,7 @@ import matplotlib
 matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
+from datetime import date
 
 #Criar conexão e cursor
 con = sqlite3.connect('banco.db')
@@ -284,6 +285,8 @@ class Aplicação:
         self.tarefas_realizadas = TarefasRealizadas(self)
         self.graficos = Gráficos(self) 
         
+        self.tempos_tarefa_ar = []
+        
         self.tela_atual = self.tela_principal
         self.tela_atual.grid()
         
@@ -313,7 +316,7 @@ class Aplicação:
         pos = 0
         for i in items:
             idx = int(i) - pos
-            self.botaocadastra.tarefas.delete( idx,idx )
+            self.botaocadastra.tarefas.delete(idx, idx)
             pos = pos + 1
             
     def apagar1(self):
@@ -333,7 +336,7 @@ class Aplicação:
         self.tela_atual.grid_forget()
         self.tarefas_realizadas.grid()
         self.tela_atual = self.tarefas_realizadas
-        
+        print(self.tempos_tarefa_ar)
     def ir_graficos(self):
         self.botaocadastra.grid_forget()
         self.graficos.grid()
@@ -345,8 +348,10 @@ class Aplicação:
         self.tela_atual = self.perfil
         
     def tarefas_ar(self):
+        tempo = date.today()
         for i in self.botaocadastra.tarefas.curselection():
             self.tarefas_realizadas.lista_ar.insert(tk.END, self.tela_atual.tarefas.get(i))
+            self.tempos_tarefa_ar.append(tempo)
         items = self.botaocadastra.tarefas.curselection()
         pos = 0
         for i in items:
