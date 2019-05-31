@@ -309,6 +309,7 @@ class Aplicação:
         
     def apertou_delete(self, event):
         self.apagar()
+        self.apagar1()
         
     def apagar(self):
         items = self.botaocadastra.tarefas.curselection()
