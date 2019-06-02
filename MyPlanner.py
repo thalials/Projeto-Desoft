@@ -2,20 +2,9 @@
 from tkinter import *
 import tkinter as tk
 import json
-#from datetime import date
 
-#Criar conexão e cursor
-con = sqlite3.connect('banco.db')
-cur = con.cursor()
-
-#Criar tabela clientes
-cur.execute("""CREATE TABLE IF NOT EXISTS clientes (
-            nome VARCHAR,
-            telefone VARCHAR PRIMARY KEY,
-            endereco VARCHAR,
-            comp VARCHAR)""")
-
-# Fonte para pesquisa: https://gist.github.com/volneyrock/db7e28e118f0e0ba2a73
+# Fonte para pesquisa:
+# https://gist.github.com/volneyrock/db7e28e118f0e0ba2a73
 
 class TelaPrincipal(tk.Frame):
     def __init__(self, app):
@@ -24,10 +13,10 @@ class TelaPrincipal(tk.Frame):
         self.app = app
 #--------------------------------------TKINTER INTERFACE/ TELA DE CADASTRO ------------------------------------------------#
         self.app.root.geometry("775x600")
-        
-       
+         
          #Configurações do design
-        self.rowconfigure(0, minsize=100, weight=1) #linhas
+         #linhas
+        self.rowconfigure(0, minsize=100, weight=1) 
         self.rowconfigure(1, minsize=25, weight=1)
         self.rowconfigure(2, minsize=25, weight=1)
         self.rowconfigure(3, minsize=25, weight=1)
@@ -43,8 +32,8 @@ class TelaPrincipal(tk.Frame):
         self.rowconfigure(13, minsize=50, weight=1)
         self.rowconfigure(14, minsize=150, weight=1)
       
-      
-        self.columnconfigure(0, minsize = 100, weight=1) #colunas
+         # colunas
+        self.columnconfigure(0, minsize = 100, weight=1) 
         self.columnconfigure(1, minsize = 50, weight=1)
         self.columnconfigure(2, minsize = 50, weight=1)
         self.columnconfigure(3, minsize = 275, weight=1)
@@ -53,61 +42,64 @@ class TelaPrincipal(tk.Frame):
         self.columnconfigure(6, minsize = 100, weight=1)
         self.columnconfigure(7, minsize = 25, weight=1)
         
-        self.configure(background="khaki") #definindo cor do fundo
-       
+        #definindo cor do fundo
+        self.configure(background="khaki") 
+        
+        # Titulo da tela de cadastro
         self.titulo = tk.Label(self, text="Registration Planner") 
         self.titulo["font"] = ("Times New Roman", "20", "bold")
         self.titulo.grid(row=0, column=3, sticky="nsew")
         self.titulo["bg"] = "khaki"
-                
-        self.caixa_texto1 = tk.StringVar()
         
-        self.caixa_texto2 = tk.StringVar()
-        
+        # caixas de texto referente a cada entrada no cadastro (nome completo, idade e ocupacao)
+        self.caixa_texto1 = tk.StringVar()       
+        self.caixa_texto2 = tk.StringVar()       
         self.caixa_texto3 = tk.StringVar()
         
+        # Nome completo do usuario:  
         self.entrada1 = tk.Entry(self)
         self.entrada1.configure(textvariable = self.caixa_texto1)
-        self.entrada1.grid(row=2, column=3, sticky="nsew", padx=2, pady =1)  
-  
-        self.nome = tk.Label(self, text="Nome") 
+        self.entrada1.grid(row=2, column=3, sticky="nsew", padx=2, pady =1)    
+        self.nome = tk.Label(self, text="Nome completo") 
         self.nome["font"] = ("Times New Roman", "15", "bold")
         self.nome.grid(row=2, column=2, sticky="nsew")
         self.nome["bg"] = "khaki"
        
+         # Informacoes de idade do usuario:
         self.entrada2 = tk.Entry(self)
         self.entrada2.configure(textvariable = self.caixa_texto2)
-        self.entrada2.grid(row=5, column=3, sticky="nsew") 
-  
+        self.entrada2.grid(row=5, column=3, sticky="nsew")   
         self.idade = tk.Label(self, text="Idade") 
         self.idade["font"] = ("Times New Roman", "15", "bold")
         self.idade.grid(row=5, column=2, sticky="nsew")
         self.idade["bg"] = "khaki"
-         
+       
+        # informacoes de ocupacao do usuario:
         self.entrada3 = tk.Entry(self)
         self.entrada3.configure(textvariable = self.caixa_texto3)
-        self.entrada3.grid(row=8, column=3, sticky="nsew") 
-  
+        self.entrada3.grid(row=8, column=3, sticky="nsew")   
         self.ocup = tk.Label(self, text="Ocupação") 
         self.ocup["font"] = ("Times New Roman", "15", "bold")
         self.ocup.grid(row=8, column=2, sticky="nsew")
         self.ocup["bg"] = "khaki"
         
-        var = tk.IntVar()
-
+        # definicao do botao de cadastro 
         self.botaocadastra = tk.Button(self, text = "Cadastrar")
         self.botaocadastra["font"] = ("Times New Roman", "15", "bold")
         self.botaocadastra['bg'] = ('tomato3')
         self.botaocadastra['fg'] = ('white')
         self.botaocadastra["command"] = self.cadastrausuario
         self.botaocadastra.grid(row = 13 , column = 3, sticky = "nsew")
-  
+    
+    # As informacoes dos usuarios serao salvas a cada vez que ele colocar seu nome completo, 
+    # Abaixo esta parte do codigo que salva essas informacoes apos o cadastro 
     def salva_informacoes(self):
         with open("cadastros realizados.json", "r") as arquivo:
            texto = arquivo.read()
-      
-        dicionario = json.loads(texto) 
-       
+           # dicionario refere-se ao 'lugar' onde ficaram gravadas as informacoes de cadastro 
+           # e a lista de tarefas que o usuario tem para fazer;
+           # Todas essas informacoes ficarao salvas em um arquivo nomeado 'cadastros realizados';
+        dicionario = json.loads(texto)     
         if self.app.nome not in dicionario:     
             dicionario[self.app.nome] = {"idade": self.app.idade, "ocupacao": self.app.ocup, "tarefas a fazer": []}
         
@@ -122,7 +114,7 @@ class TelaPrincipal(tk.Frame):
         self.app.cadastrausuario()
         self.salva_informacoes()
         
-#-----------------------------------------FUNÇÕES-----------------------------------------------------------#                
+#---------------------------------------------FRAMES---------------------------------------------------#
 class CadastroFeito(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
@@ -207,8 +199,6 @@ class CadastroFeito(tk.Frame):
     def update(self):
         self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
 
-
-        
 class TarefasRealizadas(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
@@ -293,8 +283,6 @@ class Aplicação:
         self.botaocadastra = CadastroFeito(self)
         self.tarefas_realizadas = TarefasRealizadas(self)
         self.rendimento = Rendimento(self) 
-        
-#        self.tempos_tarefa_feito = []
         
         self.tela_atual = self.tela_principal
         self.tela_atual.grid()
