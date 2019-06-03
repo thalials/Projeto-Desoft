@@ -182,19 +182,11 @@ class CadastroFeito(tk.Frame):
         self.tarefas_realizadas["command"] = self.app.tarefas_feitas
         self.tarefas_realizadas.grid(row=1, column=2, sticky="")
         self.tarefas_realizadas["bg"] = "salmon1"
-
-
-        self.graficos = tk.Button(self) 
-        self.graficos["text"] = "Verificar Rendimento \n Semanal"
-        self.graficos["font"] = ("Arial","12")
-        self.graficos["command"] = self.app.ir_graficos
-        self.graficos.grid(row=2, column=2, sticky="")
-        self.graficos["bg"] = "salmon1"
         
         self.arquivar = tk.Button(self) 
         self.arquivar["text"] = "Feita!"
         self.arquivar["font"] = ("Arial", "12", "bold")
-        self.arquivar["command"] = self.app.tarefas_ar
+        self.arquivar["command"] = self.app.tarefas_feito
         self.arquivar.grid(row=4, column=2, sticky="")
         self.arquivar["bg"] = "salmon1"
         
