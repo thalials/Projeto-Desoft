@@ -182,13 +182,6 @@ class CadastroFeito(tk.Frame):
         self.tarefas_realizadas["command"] = self.app.tarefas_feitas
         self.tarefas_realizadas.grid(row=1, column=2, sticky="")
         self.tarefas_realizadas["bg"] = "salmon1"
-
-        self.rendimento = tk.Button(self) 
-        self.rendimento["text"] = "Verificar Rendimento \n Semanal"
-        self.rendimento["font"] = ("Times New Roman","15")
-        self.rendimento["command"] = self.app.ir_rendimento
-        self.rendimento.grid(row=2, column=2, sticky="")
-        self.rendimento["bg"] = "salmon1"
         
         self.feita = tk.Button(self) 
         self.feita["text"] = "Feita!"
@@ -240,35 +233,6 @@ class TarefasRealizadas(tk.Frame):
         
         self.lista_feito = tk.Listbox(self)
         self.lista_feito.grid(row=1, column=0, rowspan=2, columnspan=4, sticky="nsew", padx=5, pady=5)
-        
-class Rendimento(tk.Frame):
-    def __init__(self, app):
-        tk.Frame.__init__(self, app.root)
-        
-        self.app = app
-        
-        self.rowconfigure(0, minsize=200, weight=1)
-        self.rowconfigure(1, minsize=200, weight=1)
-        self.rowconfigure(2, minsize=200, weight=1)
-        
-        self.columnconfigure(0, minsize=200, weight=1) #colunas
-        self.columnconfigure(1, minsize=400, weight=1)
-        self.columnconfigure(2, minsize=200, weight=1)
-        
-        self.configure(background="khaki")
-        
-        self.titulo = tk.Label(self, text="Rendimento semanal")
-        self.titulo["font"] = ("Times New Roman", "20", "bold")
-        self.titulo.grid(row=0, column=1, sticky="")
-        self.titulo["foreground"]='black'
-        self.titulo["bg"]='khaki'
-        
-        self.voltar = tk.Button(self) #botão 1
-        self.voltar["text"] = "Voltar"
-        self.voltar["font"] = ("Times New Roman", "15")
-        self.voltar["command"] = self.app.mudar_tela_principal
-        self.voltar.grid(row=2, column=0, sticky="sw", padx=5, pady=5)
-        self.voltar["bg"]='salmon1'           
 
 class Aplicação:
     def __init__(self):
@@ -335,11 +299,6 @@ class Aplicação:
         self.tela_atual.grid_forget()
         self.tarefas_realizadas.grid()
         self.tela_atual = self.tarefas_realizadas
-        
-    def ir_rendimento(self):
-        self.botaocadastra.grid_forget()
-        self.rendimento.grid()
-        self.tela_atual = self.rendimento
         
     def tarefas_feito(self):
         for i in self.botaocadastra.tarefas.curselection():
