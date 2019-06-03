@@ -266,7 +266,7 @@ class Aplicação:
         self.tela_atual = self.botaocadastra 
 
     def salvar(self):
-        if self.tela_atual == self.tela_principal :
+        if self.tela_atual == self.tela_principal:
             self.mudar_tela_principal()
         else:
             if len(self.tela_atual.conteudo_caixa_texto.get()) == 0:
@@ -330,7 +330,7 @@ class Aplicação:
         dicionario = json.loads(texto)  
         dicionario[self.nome]["tarefas a fazer"].append(tarefa)
         
-        with open("cadastros realizados.json", "w") as arquivo:
+        with open("cadastros realizados.json", "a") as arquivo:
             arquivo.write(json.dumps(dicionario)) 
            
     def roda(self):
