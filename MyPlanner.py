@@ -182,13 +182,23 @@ class CadastroFeito(tk.Frame):
         self.tarefas_realizadas["command"] = self.app.tarefas_feitas
         self.tarefas_realizadas.grid(row=1, column=2, sticky="")
         self.tarefas_realizadas["bg"] = "salmon1"
+
+
+        self.graficos = tk.Button(self) 
+        self.graficos["text"] = "Verificar Rendimento \n Semanal"
+        self.graficos["font"] = ("Arial","12")
+        self.graficos["command"] = self.app.ir_graficos
+        self.graficos.grid(row=2, column=2, sticky="")
+        self.graficos["bg"] = "salmon1"
         
-        self.feita = tk.Button(self) 
-        self.feita["text"] = "Feita!"
-        self.feita["font"] = ("Times New Roman", "15", "bold")
-        self.feita["command"] = self.app.tarefas_feito
-        self.feita.grid(row=4, column=2, sticky="")
-        self.feita["bg"] = "salmon1"
+        self.arquivar = tk.Button(self) 
+        self.arquivar["text"] = "Feita!"
+        self.arquivar["font"] = ("Arial", "12", "bold")
+        self.arquivar["command"] = self.app.tarefas_ar
+        self.arquivar.grid(row=4, column=2, sticky="")
+        self.arquivar["bg"] = "salmon1"
+        
+
 
     def update(self):
         self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
@@ -266,15 +276,18 @@ class Aplicação:
         self.tela_atual = self.botaocadastra 
 
     def salvar(self):
-        if len(self.tela_atual.conteudo_caixa_texto.get()) == 0:
-            print("digite uma tarefa")
+        if self.tela_atual == self.tela_principal :
+            self.mudar_tela_principal()
         else:
-            salvando_tarefas = self.tela_atual.conteudo_caixa_texto.get()
-            self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + 
+            if len(self.tela_atual.conteudo_caixa_texto.get()) == 0:
+                print("digite uma tarefa")
+            else:
+                salvando_tarefas = self.tela_atual.conteudo_caixa_texto.get()
+                self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + 
                             self.tela_atual.conteudo_caixa_texto.get())
             
-            self.tela_atual.conteudo_caixa_texto.set("")
-            self.salva_tarefas(salvando_tarefas) 
+                self.tela_atual.conteudo_caixa_texto.set("")
+                self.salva_tarefas(salvando_tarefas) 
         
     def apertou_delete(self, event):
         self.apagar()
