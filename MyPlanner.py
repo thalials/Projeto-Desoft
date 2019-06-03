@@ -233,6 +233,15 @@ class TarefasRealizadas(tk.Frame):
         
         self.lista_feito = tk.Listbox(self)
         self.lista_feito.grid(row=1, column=0, rowspan=2, columnspan=4, sticky="nsew", padx=5, pady=5)
+        self.lista_feito.bind("<Delete>", self.app.apertou_delete)
+        
+        def contagem(self, event):
+            soma = 0 
+            cont = 0
+            for i in len(self.lista_feito): 
+                soma += 1
+                cont += 1 
+                print("total de tarefas realizadas = {0}".format(cont))
 
 class Aplicação:
     def __init__(self):
@@ -246,8 +255,7 @@ class Aplicação:
         
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.botaocadastra = CadastroFeito(self)
-        self.tarefas_realizadas = TarefasRealizadas(self)
-        self.rendimento = Rendimento(self) 
+        self.tarefas_realizadas = TarefasRealizadas(self) 
         
         self.tela_atual = self.tela_principal
         self.tela_atual.grid()
@@ -270,6 +278,7 @@ class Aplicação:
         
     def apertou_delete(self, event):
         self.apagar()
+        self.apagar1()
         
     def apagar(self):
         items = self.botaocadastra.tarefas.curselection()
@@ -285,6 +294,7 @@ class Aplicação:
         for i in items:
             idx = int(i) - pos
             self.tarefas_realizadas.lista_feito.delete( idx,idx )
+            pos = pos + 1
     
     def cadastrausuario(self):
         self.tela_atual.grid_forget()
