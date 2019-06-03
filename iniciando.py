@@ -191,10 +191,6 @@ class CadastroFeito(tk.Frame):
         self.arquivar.grid(row=4, column=2, sticky="")
         self.arquivar["bg"] = "salmon1"
         
-        self.vazia = tk.Label(self, text="")
-        self.vazia["font"] = ("Arial", "12") 
-        self.vazia.grid(row=1, column=1, sticky="")
-        self.vazia["bg"] = "khaki"
 
     def update(self):
         self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
@@ -309,7 +305,6 @@ class Aplicação:
         
     def apertou_delete(self, event):
         self.apagar()
-        self.apagar1()
         
     def apagar(self):
         items = self.botaocadastra.tarefas.curselection()
