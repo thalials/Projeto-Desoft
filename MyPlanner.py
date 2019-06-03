@@ -268,15 +268,18 @@ class Aplicação:
         self.tela_atual = self.botaocadastra 
 
     def salvar(self):
-        if len(self.tela_atual.conteudo_caixa_texto.get()) == 0:
-            print("digite uma tarefa")
+        if self.tela_atual == self.tela_principal :
+            self.mudar_tela_principal()
         else:
-            salvando_tarefas = self.tela_atual.conteudo_caixa_texto.get()
-            self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + 
+            if len(self.tela_atual.conteudo_caixa_texto.get()) == 0:
+                print("digite uma tarefa")
+            else:
+                salvando_tarefas = self.tela_atual.conteudo_caixa_texto.get()
+                self.tela_atual.tarefas.insert(tk.END, chr(9745) + " " + 
                             self.tela_atual.conteudo_caixa_texto.get())
             
-            self.tela_atual.conteudo_caixa_texto.set("")
-            self.salva_tarefas(salvando_tarefas) 
+                self.tela_atual.conteudo_caixa_texto.set("")
+                self.salva_tarefas(salvando_tarefas) 
         
     def apertou_delete(self, event):
         self.apagar()
