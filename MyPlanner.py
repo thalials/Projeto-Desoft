@@ -3,9 +3,6 @@ from tkinter import *
 import tkinter as tk
 import json
 
-# Fonte para pesquisa:
-# https://gist.github.com/volneyrock/db7e28e118f0e0ba2a73
-
 class TelaPrincipal(tk.Frame):
     def __init__(self, app):
         tk.Frame.__init__(self, app.root)
@@ -95,7 +92,7 @@ class TelaPrincipal(tk.Frame):
     # Abaixo esta parte do codigo que salva essas informacoes apos o cadastro 
     def salva_informacoes(self):
         with open("cadastros realizados.json", "r") as arquivo:
-           texto = arquivo.read()
+            texto = arquivo.read()
            
            # dicionario refere-se ao 'lugar' onde ficaram gravadas as informacoes de cadastro 
            # e a lista de tarefas que o usuario tem para fazer;
@@ -104,7 +101,7 @@ class TelaPrincipal(tk.Frame):
         if self.app.nome not in dicionario:     
             dicionario[self.app.nome] = {"idade": self.app.idade, "ocupacao": self.app.ocup, "tarefas a fazer": []}
             # abre 'cadastros realizados.txt' sem apagar o que já existia 
-            with open("cadastros realizados.json", "a") as arquivo:
+            with open("cadastros realizados.json", "w") as arquivo:
                 arquivo.write(json.dumps(dicionario)) 
            
     def cadastrausuario(self):
@@ -134,8 +131,7 @@ class CadastroFeito(tk.Frame):
         self.columnconfigure(1, minsize=200, weight=1)
         self.columnconfigure(2, minsize=50, weight=1)
         self.columnconfigure(3, minsize=50, weight=1)
-
-        
+    
         self.configure(background="khaki") #definindo cor do fundo
         
         self.titulo1 = tk.Label(self, text="Minhas tarefas") 
@@ -247,7 +243,7 @@ class Aplicação:
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.botaocadastra = CadastroFeito(self)
         self.tarefas_realizadas = TarefasRealizadas(self)
-        self.rendimento = Rendimento(self) 
+#        self.rendimento = Rendimento(self) 
         
         self.tela_atual = self.tela_principal
         self.tela_atual.grid()
@@ -267,7 +263,10 @@ class Aplicação:
             
             self.tela_atual.conteudo_caixa_texto.set("")
             self.salva_tarefas(salvando_tarefas) 
-        
+    def ir_rendimento(self):	
+        self.botaocadastra.grid_forget()	
+        self.rendimento.grid()	
+        self.tela_atual = self.rendimento    
     def apertou_delete(self, event):
         self.apagar()
         
@@ -312,7 +311,7 @@ class Aplicação:
    
     def salva_tarefas(self, tarefa):
         with open("cadastros realizados.json", "r") as arquivo:
-           texto = arquivo.read()
+            texto = arquivo.read()
       
         dicionario = json.loads(texto)  
         dicionario[self.nome]["tarefas a fazer"].append(tarefa)
