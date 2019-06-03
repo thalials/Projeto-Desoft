@@ -96,14 +96,15 @@ class TelaPrincipal(tk.Frame):
     def salva_informacoes(self):
         with open("cadastros realizados.json", "r") as arquivo:
            texto = arquivo.read()
+           
            # dicionario refere-se ao 'lugar' onde ficaram gravadas as informacoes de cadastro 
            # e a lista de tarefas que o usuario tem para fazer;
            # Todas essas informacoes ficarao salvas em um arquivo nomeado 'cadastros realizados';
         dicionario = json.loads(texto)     
         if self.app.nome not in dicionario:     
             dicionario[self.app.nome] = {"idade": self.app.idade, "ocupacao": self.app.ocup, "tarefas a fazer": []}
-        
-            with open("cadastros realizados.json", "w") as arquivo:
+            # abre 'cadastros realizados.txt' sem apagar o que já existia 
+            with open("cadastros realizados.json", "a") as arquivo:
                 arquivo.write(json.dumps(dicionario)) 
            
     def cadastrausuario(self):
