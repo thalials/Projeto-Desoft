@@ -329,6 +329,7 @@ class Aplicação:
     # função que faz com que o botão de delete funcione
     def apertou_delete(self, event):
         self.apagar()
+        self.apagar1()
         
     
     def tarefas_feitas(self):
