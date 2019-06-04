@@ -95,16 +95,16 @@ class TelaPrincipal(tk.Frame):
     # Abaixo esta parte do codigo que salva essas informacoes apos o cadastro 
     def salva_informacoes(self):
         with open("cadastros realizados.json", "r") as arquivo:
-           texto = arquivo.read()
+            texto = arquivo.read()
            
-           # dicionario refere-se ao 'lugar' onde ficaram gravadas as informacoes de cadastro 
-           # e a lista de tarefas que o usuario tem para fazer;
-           # Todas essas informacoes ficarao salvas em um arquivo nomeado 'cadastros realizados';
+        # dicionario refere-se ao 'lugar' onde ficaram gravadas as informacoes de cadastro 
+        # e a lista de tarefas que o usuario tem para fazer;
+        # Todas essas informacoes ficarao salvas em um arquivo nomeado 'cadastros realizados';
         dicionario = json.loads(texto)     
         if self.app.nome not in dicionario:     
             dicionario[self.app.nome] = {"idade": self.app.idade, "ocupacao": self.app.ocup, "tarefas a fazer": []}
             # abre 'cadastros realizados.txt' sem apagar o que já existia 
-            with open("cadastros realizados.json", "a") as arquivo:
+            with open("cadastros realizados.json", "w") as arquivo:
                 arquivo.write(json.dumps(dicionario)) 
            
     def cadastrausuario(self):
@@ -189,9 +189,7 @@ class CadastroFeito(tk.Frame):
         self.arquivar["command"] = self.app.tarefas_feito
         self.arquivar.grid(row=4, column=2, sticky="")
         self.arquivar["bg"] = "salmon1"
-        
-
-
+  
     def update(self):
         self.perfil["text"] = "Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup)
 
@@ -256,7 +254,7 @@ class Aplicação:
         self.tela_principal = TelaPrincipal(self)  # Tela principal.
         self.botaocadastra = CadastroFeito(self)
         self.tarefas_realizadas = TarefasRealizadas(self) 
-        
+       
         self.tela_atual = self.tela_principal
         self.tela_atual.grid()
         
@@ -330,7 +328,7 @@ class Aplicação:
         dicionario = json.loads(texto)  
         dicionario[self.nome]["tarefas a fazer"].append(tarefa)
         
-        with open("cadastros realizados.json", "a") as arquivo:
+        with open("cadastros realizados.json", "w") as arquivo:
             arquivo.write(json.dumps(dicionario)) 
            
     def roda(self):
