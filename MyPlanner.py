@@ -22,7 +22,7 @@ class TelaPrincipal(tk.Frame):
         self.app = app
         
 #--------------------------------------TKINTER INTERFACE/ TELA DE CADASTRO ------------------------------------------------#
-        self.app.root.geometry("775x600")
+        self.app.root.geometry("785x600")
          
         #Configurações do design
         self.rowconfigure(0, minsize=100, weight=1)#linhas 
@@ -68,7 +68,7 @@ class TelaPrincipal(tk.Frame):
         self.entrada1 = tk.Entry(self)
         self.entrada1.configure(textvariable = self.caixa_texto1)
         self.entrada1.grid(row=2, column=3, sticky="nsew", padx=2, pady =1)    
-        self.nome = tk.Label(self, text="Nome completo") 
+        self.nome = tk.Label(self, text="Nome ") 
         self.nome["font"] = ("Times New Roman", "15", "bold")
         self.nome.grid(row=2, column=2, sticky="nsew")
         self.nome["bg"] = "light sky blue"
@@ -231,7 +231,7 @@ class TarefasRealizadas(tk.Frame):
         self.columnconfigure(1, minsize=300, weight=1)
         self.columnconfigure(2, minsize=200, weight=1)
         self.columnconfigure(3, minsize = 75, weight=1)
-        
+        self.columnconfigure(4, minsize = 50, weight = 1)
         self.configure(background="light sky blue")# definindo cor da tela
         
         
@@ -271,7 +271,7 @@ class Aplicação:
         self.idade = ""
         
         self.root = tk.Tk()
-        self.root.geometry("775x600") # tamanho da tela
+       
         self.root.title(string='MyPlanner') # titulo da aplicação
         
         self.tela_principal = TelaPrincipal(self )# Tela principal/cadastro
