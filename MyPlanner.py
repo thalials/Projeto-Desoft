@@ -43,13 +43,13 @@ class TelaPrincipal(tk.Frame):
         self.columnconfigure(7, minsize = 25, weight=1)
         
         #definindo cor do fundo
-        self.configure(background="khaki") 
+        self.configure(background="light sky blue") 
         
         # Titulo da tela de cadastro
         self.titulo = tk.Label(self, text="Registration Planner") 
         self.titulo["font"] = ("Times New Roman", "20", "bold")
         self.titulo.grid(row=0, column=3, sticky="nsew")
-        self.titulo["bg"] = "khaki"
+        self.titulo["bg"] = "light sky blue"
         
         # caixas de texto referente a cada entrada no cadastro (nome completo, idade e ocupacao)
         self.caixa_texto1 = tk.StringVar()       
@@ -63,7 +63,7 @@ class TelaPrincipal(tk.Frame):
         self.nome = tk.Label(self, text="Nome completo") 
         self.nome["font"] = ("Times New Roman", "15", "bold")
         self.nome.grid(row=2, column=2, sticky="nsew")
-        self.nome["bg"] = "khaki"
+        self.nome["bg"] = "light sky blue"
        
          # Informacoes de idade do usuario:
         self.entrada2 = tk.Entry(self)
@@ -72,7 +72,7 @@ class TelaPrincipal(tk.Frame):
         self.idade = tk.Label(self, text="Idade") 
         self.idade["font"] = ("Times New Roman", "15", "bold")
         self.idade.grid(row=5, column=2, sticky="nsew")
-        self.idade["bg"] = "khaki"
+        self.idade["bg"] = "light sky blue"
        
         # informacoes de ocupacao do usuario:
         self.entrada3 = tk.Entry(self)
@@ -81,7 +81,7 @@ class TelaPrincipal(tk.Frame):
         self.ocup = tk.Label(self, text="Ocupação") 
         self.ocup["font"] = ("Times New Roman", "15", "bold")
         self.ocup.grid(row=8, column=2, sticky="nsew")
-        self.ocup["bg"] = "khaki"
+        self.ocup["bg"] = "light sky blue"
         
         # definicao do botao de cadastro 
         self.botaocadastra = tk.Button(self, text = "Cadastrar")
@@ -136,13 +136,13 @@ class CadastroFeito(tk.Frame):
         self.columnconfigure(3, minsize=50, weight=1)
 
         
-        self.configure(background="khaki") #definindo cor do fundo
+        self.configure(background="light sky blue") #definindo cor do fundo
         
         self.titulo1 = tk.Label(self, text="Minhas tarefas") 
         self.titulo1["font"] = ("Times New Roman", "30", "bold")
         self.titulo1.grid(row=1, column=0, sticky="n")
         self.titulo1["foreground"]='black'
-        self.titulo1["bg"]='khaki'
+        self.titulo1["bg"]='light sky blue'
         
         self.tarefas = tk.Listbox(self)
         self.tarefas.grid(row=2, column=0, rowspan=3, columnspan=2, 
@@ -162,33 +162,33 @@ class CadastroFeito(tk.Frame):
         self.salvar["font"] = ("Times New Roman", "15", "bold") 
         self.salvar["command"] = self.app.salvar
         self.salvar.grid(row=3, column=2, sticky="")
-        self.salvar["bg"] = "salmon1"
+        self.salvar["bg"] = "tomato3"
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
         self.apagar["font"] = ("Times New Roman", "15", "bold") 
         self.apagar["command"] = self.app.apagar
         self.apagar.grid(row=5, column=2, sticky="")
-        self.apagar["bg"] = "salmon1"
+        self.apagar["bg"] = "tomato3"
         
         self.perfil = tk.Label(self, text="Perfil \n Nome: {0} \n Idade: {1} \n Ocupação: {2}".format(self.app.nome, self.app.idade, self.app.ocup))
         self.perfil["font"] = ("Times New Roman", "15") 
         self.perfil.grid(row=0, column=2, sticky="")
-        self.perfil["bg"] = "salmon1"
+        self.perfil["bg"] = "tomato3"
                 
         self.tarefas_realizadas = tk.Button(self) 
         self.tarefas_realizadas["text"] = "Tarefas Realizadas"
-        self.tarefas_realizadas["font"] = ("Times New Roman","15")
+        self.tarefas_realizadas["font"] = ("Times New Roman","15", "bold")
         self.tarefas_realizadas["command"] = self.app.tarefas_feitas
         self.tarefas_realizadas.grid(row=1, column=2, sticky="")
-        self.tarefas_realizadas["bg"] = "salmon1"
+        self.tarefas_realizadas["bg"] = "tomato3"
         
         self.arquivar = tk.Button(self) 
         self.arquivar["text"] = "Feita!"
-        self.arquivar["font"] = ("Arial", "12", "bold")
+        self.arquivar["font"] = ("Arial", "15", "bold")
         self.arquivar["command"] = self.app.tarefas_feito
         self.arquivar.grid(row=4, column=2, sticky="")
-        self.arquivar["bg"] = "salmon1"
+        self.arquivar["bg"] = "tomato3"
         
 
 
@@ -211,39 +211,31 @@ class TarefasRealizadas(tk.Frame):
         self.columnconfigure(2, minsize=200, weight=1)
         self.columnconfigure(3, minsize = 75, weight=1)
         
-        self.configure(background="khaki")
+        self.configure(background="light sky blue")
         
         self.titulo = tk.Label(self, text="Tarefas Realizadas")
         self.titulo["font"] = ("Times New Roman", "20", "bold")
         self.titulo.grid(row=0, column=0, columnspan=3, sticky="", padx=5, pady=5)
         self.titulo["foreground"]='black'
-        self.titulo["bg"]='khaki'
+        self.titulo["bg"]='light sky blue'
                 
         self.voltar = tk.Button(self) #botão 1
         self.voltar["text"] = "Voltar"
         self.voltar["font"] = ("Times New Roman", "15")
         self.voltar["command"] = self.app.mudar_tela_principal
-        self.voltar.grid(row=3, column=0, sticky="", padx=1, pady=5)
-        self.voltar["bg"] = "salmon1"
+        self.voltar.grid(row=3, column=0, sticky="sw", padx=1, pady=1)
+        self.voltar["bg"] = "tomato3"
         
         self.apagar = tk.Button(self)
         self.apagar["text"] = "Apagar"
         self.apagar["font"] = ("Times New Roman", "15") 
         self.apagar["command"] = self.app.apagar1
-        self.apagar.grid(row=3, column=3, sticky="", padx=1, pady=5)
-        self.apagar["bg"] = "salmon1"
+        self.apagar.grid(row=3, column=3, sticky="se", padx=1, pady=1)
+        self.apagar["bg"] = "tomato3"
         
         self.lista_feito = tk.Listbox(self)
         self.lista_feito.grid(row=1, column=0, rowspan=2, columnspan=4, sticky="nsew", padx=5, pady=5)
         self.lista_feito.bind("<Delete>", self.app.apertou_delete)
-        
-        def contagem(self, event):
-            soma = 0 
-            cont = 0
-            for i in len(self.lista_feito): 
-                soma += 1
-                cont += 1 
-                print("total de tarefas realizadas = {0}".format(cont))
 
 class Aplicação:
     def __init__(self):
@@ -335,6 +327,7 @@ class Aplicação:
         with open("cadastros realizados.json", "w") as arquivo:
             arquivo.write(json.dumps(dicionario)) 
            
+
     def roda(self):
         self.root.mainloop()
 
